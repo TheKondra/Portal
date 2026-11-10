@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Portal — ігри та інструменти</title>
+<style>
+:root{--bg:#07130f;--panel:rgba(13,31,25,.82);--panel2:rgba(21,45,37,.8);--text:#edf7f1;--muted:#9bb4a8;--accent:#51d69a;--line:rgba(255,255,255,.1);--shadow:0 18px 60px #0005}
+*{box-sizing:border-box}body{margin:0;color:var(--text);font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;background:radial-gradient(900px 500px at 15% -10%,#174a35 0%,transparent 65%),radial-gradient(800px 500px at 100% 10%,#102e27 0%,transparent 60%),var(--bg);min-height:100vh;transition:.25s}
+body.theme-blue{--bg:#090d1d;--panel:rgba(19,24,48,.86);--panel2:rgba(32,38,72,.8);--accent:#8d83ff;--line:rgba(255,255,255,.12);background:radial-gradient(900px 500px at 10% -10%,#34316e 0%,transparent 65%),radial-gradient(800px 500px at 100% 10%,#172d59 0%,transparent 60%),var(--bg)}
+body.theme-midnight{--bg:#111318;--panel:rgba(27,29,35,.9);--panel2:rgba(40,43,51,.85);--accent:#c1c7d0;background:linear-gradient(145deg,#22252b,#101115 65%)}
+body.theme-wallpaper{background:linear-gradient(#07130fbb,#07130fdd),url('') center/cover fixed,var(--bg)}
+button,input{font:inherit}button{cursor:pointer;color:inherit;border:1px solid var(--line);background:var(--panel2);border-radius:12px;padding:10px 14px;transition:.18s}button.primary{background:var(--accent);color:#07130f;border:0;font-weight:750}button:disabled{opacity:.4;cursor:not-allowed;transform:none}.app{max-width:1180px;margin:auto;padding:22px}.top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:28px}.brand{display:flex;align-items:center;gap:12px;font-weight:850;font-size:20px;letter-spacing:.2px}.logo{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,var(--accent),#247a62);display:grid;place-items:center;color:#06130e;font-weight:950}.nav{display:flex;gap:8px;flex-wrap:wrap}.nav button{background:transparent}.hero{padding:30px;border:1px solid var(--line);border-radius:24px;background:linear-gradient(115deg,var(--panel),#142a2488);box-shadow:var(--shadow);display:flex;justify-content:space-between;gap:20px;align-items:center;margin-bottom:24px}.eyebrow{color:var(--accent);font-weight:800;text-transform:uppercase;font-size:11px;letter-spacing:1.5px}.hero h1{font-size:clamp(28px,5vw,44px);line-height:1.08;margin:8px 0 10px}.hero p{color:var(--muted);max-width:570px;margin:0}.hero-mark{font-size:74px;opacity:.85}.section-head{display:flex;align-items:end;justify-content:space-between;margin:26px 0 14px}.section-head h2{margin:0;font-size:21px}.muted{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:17px;min-height:160px;display:flex;flex-direction:column;gap:9px;box-shadow:0 8px 25px #0002}.card:hover{border-color:color-mix(in srgb,var(--accent),transparent 35%)}.game-icon{font-size:30px}.card h3{margin:0;font-size:17px}.card p{margin:0;color:var(--muted);font-size:13px;flex:1}.tag{font-size:10px;color:var(--accent);text-transform:uppercase;letter-spacing:1px;font-weight:800}.tools{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.tool{display:flex;align-items:center;gap:12px;padding:15px;background:var(--panel);border:1px solid var(--line);border-radius:15px;text-decoration:none;color:var(--text)}.tool span:first-child{font-size:22px}.footer{color:var(--muted);font-size:12px;text-align:center;padding:32px 0 12px}.view{display:none}.view.active{display:block}.game-shell{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:20px;box-shadow:var(--shadow)}.game-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:16px}.game-top h2{margin:0}.game-area{display:grid;place-items:center;min-height:300px}.board{display:grid;gap:5px;max-width:420px;width:100%;touch-action:manipulation}.tile{aspect-ratio:1;border-radius:9px;display:grid;place-items:center;font-weight:850;font-size:clamp(16px,4vw,28px);background:var(--panel2);border:1px solid var(--line)}.tile.filled{background:color-mix(in srgb,var(--accent),#14251e 72%);color:var(--text)}.tile[data-v="4"],.tile[data-v="8"]{background:#2b805e}.tile[data-v="16"],.tile[data-v="32"]{background:#287b91}.tile[data-v="64"],.tile[data-v="128"]{background:#6156a9}.tile[data-v="256"],.tile[data-v="512"]{background:#a16b36}.tile[data-v="1024"],.tile[data-v="2048"]{background:#c28a25;color:#1c1608}.controls{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:14px}.score{font-weight:800;color:var(--accent)}canvas{background:#09110e;border-radius:16px;max-width:100%;border:1px solid var(--line)}.sudoku{display:grid;grid-template-columns:repeat(9,1fr);width:min(92vw,414px);border:2px solid var(--text);gap:0}.sudoku input{width:100%;aspect-ratio:1;border:1px solid var(--line);border-radius:0;text-align:center;background:var(--panel2);color:var(--text);padding:0;font-size:18px;min-width:0}.sudoku input:nth-child(3n){border-right:2px solid var(--text)}.sudoku input:nth-child(n+19):nth-child(-n+27),.sudoku input:nth-child(n+46):nth-child(-n+54){border-bottom:2px solid var(--text)}.sudoku input.given{font-weight:900;background:var(--panel)}.sudoku input:focus{outline:2px solid var(--accent);z-index:1}.chess{display:grid;grid-template-columns:repeat(8,1fr);width:min(92vw,440px);border:3px solid #6b523e}.square{aspect-ratio:1;display:grid;place-items:center;font-size:clamp(23px,5vw,42px);padding:0;border:0;border-radius:0}.light{background:#e8d7b6;color:#171717}.dark{background:#8b684c;color:#171717}.square.selected{outline:4px solid #d5db54;outline-offset:-4px}.chat-note{padding:14px;background:var(--panel2);border-radius:14px;color:var(--muted);font-size:13px}.settings-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.settings-row button{min-width:110px}.hidden{display:none!important}
+@media(max-width:850px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.hero-mark{display:none}.tools{grid-template-columns:repeat(2,1fr)}}@media(max-width:520px){.app{padding:14px}.top{align-items:flex-start;flex-direction:column}.hero{padding:22px}.grid{gap:10px}.card{padding:13px;min-height:155px}.tools{grid-template-columns:1fr}.game-shell{padding:13px}}
+.b2048{position:relative;width:min(92vw,400px);aspect-ratio:1;margin:auto;background:var(--panel2);border-radius:14px}
+.cell2{position:absolute;width:calc(25% - 8px);height:calc(25% - 8px);border-radius:9px;background:var(--panel)}
+.tile2{position:absolute;display:grid;place-items:center;border-radius:9px;font-weight:850;font-size:clamp(14px,4vw,28px);transition:left .15s ease,top .15s ease;z-index:2}
+@keyframes pop{0%{transform:scale(.3);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes mergeAnim{0%{transform:scale(.8)}60%{transform:scale(1.15)}100%{transform:scale(1)}}
+.tile2.new{animation:pop .2s ease}
+.tile2.merged{animation:mergeAnim .2s ease}
+button:hover{border-color:var(--accent);transform:translateY(-1px);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent),transparent 65%),0 0 18px color-mix(in srgb,var(--accent),transparent 45%);background:color-mix(in srgb,var(--accent),var(--panel2) 80%)}
+
+body.animbg{background:linear-gradient(-45deg,#0f172a,#312e81,#831843,#065f46)!important;background-size:400% 400%;animation:bgshift 14s ease infinite}
+@keyframes bgshift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.theme-red{background:radial-gradient(900px 500px at 10% -10%,#7f1d1d 0%,transparent 65%),radial-gradient(800px 500px at 100% 10%,#4c0519 0%,transparent 60%),var(--bg);--bg:#1a0606;--panel:rgba(48,12,14,.85);--panel2:rgba(70,18,20,.8);--text:#fdecec;--muted:#e8a4a4;--accent:#ef4444;--line:rgba(255,255,255,.1)}
+.overlay{position:fixed;inset:0;background:#000a;display:flex;align-items:center;justify-content:center;z-index:300;padding:14px}.modal{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:22px;width:min(92vw,360px);text-align:center;color:var(--text);box-shadow:var(--shadow)}.modal .controls{margin-top:14px}@keyframes popIn{from{transform:scale(.85);opacity:0}to{transform:scale(1);opacity:1}}.modal{animation:popIn .35s cubic-bezier(.2,.9,.3,1.2)}.pick{background:var(--panel2);border:1px solid var(--line);border-radius:16px;padding:14px 6px;color:var(--text);font-weight:700;font-size:14px;cursor:pointer;transition:transform .2s,box-shadow .2s,border-color .2s;animation:popIn .4s both}.pick:hover{transform:translateY(-4px) scale(1.05);border-color:var(--accent);box-shadow:0 0 0 2px var(--accent),0 0 22px color-mix(in srgb,var(--accent),transparent 40%)}.pick:nth-child(2){animation-delay:.05s}.pick:nth-child(3){animation-delay:.1s}.pick:nth-child(4){animation-delay:.15s}.pick:nth-child(5){animation-delay:.2s}.pick:nth-child(6){animation-delay:.25s}.inp{width:100%;padding:11px;border-radius:10px;border:1px solid var(--line);background:var(--panel2);color:var(--text);font:inherit}#settings{display:block!important;position:fixed;top:0;right:0;height:100%;width:min(92vw,380px);transform:translateX(105%);transition:transform .4s cubic-bezier(.2,.9,.3,1);z-index:260;overflow-y:auto;background:var(--panel);border-left:1px solid var(--line);box-shadow:-20px 0 60px #0008;padding:18px;box-sizing:border-box}
+#settings.open{transform:translateX(0)}
+#settingsBackdrop{position:fixed;inset:0;background:#0007;opacity:0;pointer-events:none;transition:opacity .3s;z-index:255}
+#settingsBackdrop.open{opacity:1;pointer-events:auto}
+.drawer-card{background:var(--panel2);border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:12px;display:grid;gap:8px}
+.avatar-row{display:flex;gap:12px;align-items:center}
+.avatar{position:relative;width:72px;height:72px;border-radius:50%;background:var(--panel);overflow:hidden;display:grid;place-items:center;font-size:32px;flex:0 0 72px}
+.avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.avatar img.frameImg{object-fit:contain;transform:scale(1.3);mix-blend-mode:screen;z-index:2}
+</style></head>
+<body><div class="app">
+<header class="top"><div class="brand"><div class="logo">P</div><span>PORTAL <span style="color:var(--accent)">/</span> student hub</span></div><span id="walletBox" class="muted" style="font-weight:800"></span><nav class="nav"><button onclick="showHome()">Головна</button><button onclick="showMarket()">🛒 Маркет</button><button onclick="showFrames()">🖼️ Рамки</button><button onclick="showInv()">🎒 Інвентар</button><button onclick="showSettings()">⚙ Налаштування</button></nav></header>
+<main id="home" class="view active"><section class="hero"><div><div class="eyebrow">Твій простір · твій вибір</div><h1>Перерва стала<br>цікавішою.</h1><p>Ігри, корисні посилання та маленькі інструменти — в одному місці. Обирай гру й залишайся на цій сторінці.</p><div style="margin-top:18px"><button class="primary" onclick="openGame('snake')">Пограти зараз ↗</button></div></div><div class="hero-mark">✦</div></section>
+<div class="section-head"><div><div class="eyebrow">Game zone</div><h2>Ігри</h2></div><span class="muted">4 режими · прямо в браузері</span></div>
+<section class="grid">
+<div class="card"><div class="game-icon">🧩</div><span class="tag">Logic</span><h3>Судоку</h3><p>Класична числова головоломка.</p><button onclick="openGame('sudoku')">Грати</button></div>
+<div class="card"><div class="game-icon">🐍</div><span class="tag">Arcade</span><h3>Змійка</h3><p>Збирай їжу, не врізайся в себе.</p><button onclick="openGame('snake')">Грати</button></div>
+<div class="card"><div class="game-icon">♟️</div><span class="tag">Strategy</span><h3>Шахи</h3><p>Локальна партія на одному пристрої.</p><button onclick="openGame('chess')">Грати</button></div>
+<div class="card"><div class="game-icon">🔢</div><span class="tag">Puzzle</span><h3>2048</h3><p>Об'єднуй плитки й дійди до 2048.</p><button onclick="openGame('2048')">Грати</button></div><div class="card"><div class="game-icon">🎁</div><span class="tag">Sim</span><h3>Кейси</h3><p>Відкривай кейси з вигаданими предметами.</p><button onclick="openGame('cases')">Грати</button></div><div class="card"><div class="game-icon">💠</div><span class="tag">Sim</span><h3>Кейс рамок</h3><p>Відкривай кейс з рамками для аватарки.</p><button onclick="openGame('frames')">Грати</button></div>
+</section>
+<div class="section-head"><div><div class="eyebrow">Quick access</div><h2>Навчання та інструменти</h2></div></div>
+<div id="reminderBanner" style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding:14px 18px;margin-bottom:16px;border-radius:14px;background:linear-gradient(90deg,#f59e0b33,#ef444433);border:1px solid var(--line)"><span>📚 Не забудь зайти в <b>Google Classroom</b> сьогодні, там є завдання!</span><button onclick="dismissReminder()">Ок, зайшов</button></div><section class="tools"><a class="tool" href="https://classroom.google.com/" target="_blank" rel="noopener"><span>🎓</span><span><b>Google Classroom</b><br><small class="muted">Завдання та курси</small></span></a><a class="tool" href="https://drive.google.com/" target="_blank" rel="noopener"><span>📁</span><span><b>Google Drive</b><br><small class="muted">Файли та документи</small></span></a><a class="tool" href="https://slides.google.com/" target="_blank" rel="noopener"><span>📊</span><span><b>Google Slides</b><br><small class="muted">Презентації</small></span></a><a class="tool" href="https://docs.google.com/" target="_blank" rel="noopener"><span>📝</span><span><b>Google Docs</b><br><small class="muted">Документи</small></span></a><button class="tool" onclick="openGame('calc')"><span>🧮</span><span><b>Калькулятор</b><br><small class="muted">Швидкі обчислення</small></span></button></section>
+<div class="section-head"><div><div class="eyebrow">Community</div><h2>Спільнота</h2></div></div><div class="chat-note">💬 Спільний чат, профілі за нікнеймами та таблиця рекордів — наступний етап. Для них потрібен сервер, щоб повідомлення й результати синхронізувалися між усіма учнями.</div>
+</main>
+<section id="market" class="view"><div class="game-shell"><div class="game-top"><div><div class="eyebrow">Market</div><h2>Маркет</h2></div><button onclick="showHome()">← Назад</button></div><div id="marketBody" style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center"></div></div></section><section id="frames" class="view"><div class="game-shell"><div class="game-top"><div><div class="eyebrow">Frames</div><h2>Рамки для аватарки</h2></div><button onclick="showHome()">← Назад</button></div><p class="muted">Ціна в діамантах скоро. Поки що рамки можна отримати з кейса рамок.</p><div id="framesBody" style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center"></div></div></section><section id="inventory" class="view"><div class="game-shell"><div class="game-top"><div><div class="eyebrow">Inventory</div><h2>Інвентар</h2></div><button onclick="showHome()">← Назад</button></div><div id="invBody"></div></div></section><section id="settings">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><h2 style="margin:0">⚙ Налаштування</h2><button onclick="closeSettings()">✕</button></div>
+<div class="drawer-card"><div class="eyebrow">Акаунт</div>
+ <div class="avatar-row"><div class="avatar"><span id="avatarEmoji">🙂</span><img id="avatarImg" alt="" class="hidden"><img id="frameImg" alt="" class="hidden frameImg"></div>
+ <div style="flex:1;min-width:0"><div id="accountLabel" class="muted" style="font-size:13px"></div><div class="controls" style="justify-content:flex-start;margin-top:6px"><button onclick="openAuth()">👤 Акаунт</button></div></div></div>
+ <label class="muted" style="font-size:13px">Змінити нік</label>
+ <div class="settings-row"><input id="nickInput" class="inp" placeholder="Новий нік" style="flex:1"><button onclick="changeNick()">Зберегти</button></div>
+ <label class="muted" style="font-size:13px">Фото для аватарки</label>
+ <input type="file" accept="image/*" class="inp" onchange="setAvatar(this)">
+ <label class="muted" style="font-size:13px">Рамка з інвентаря</label>
+ <select id="frameSelect" class="inp" onchange="setFrame(this.value)"></select>
+</div>
+<div class="drawer-card"><div class="eyebrow">Тема</div>
+ <div class="settings-row"><button onclick="setTheme('green')">🟢 Emerald</button><button onclick="setTheme('blue')">🟣 Blue</button><button onclick="setTheme('midnight')">⚫ Midnight</button><button onclick="setTheme('red')">🔴 Red</button></div>
+ <div class="settings-row"><button onclick="toggleAnim()">🌈 Анімований фон</button></div>
+ <div class="settings-row"><input id="wall" class="inp" placeholder="URL картинки фону" style="flex:1"><button onclick="setWallpaper()">Застосувати</button></div>
+</div>
+<div class="drawer-card"><button onclick="showTutorial()">📖 Туторіал</button></div>
+<div id="adminPanel" class="hidden"></div>
+<div class="drawer-card"><button onclick="unlockAdmin()">🔒 Адмін</button>
+ <a class="tool" href="https://docs.google.com/forms/d/e/1FAIpQLSfLAqV0lNhqA2Ip-dbfxLgLsZ9hEVDYhj8QICUbBmPsyh7P7A/viewform?usp=publish-editor" target="_blank" rel="noopener"><span>💬</span><span><b>Побажання</b><br><small class="muted">Напиши, що додати</small></span></a>
+</div>
+</section>
+<section id="game" class="view"><div class="game-shell"><div class="game-top"><div><div class="eyebrow">Game window</div><h2 id="gameTitle">Гра</h2></div><button onclick="showHome()">✕ Закрити</button></div><div id="gameContent"></div></div></section>
+<footer class="footer">PORTAL · prototype 0.1 · Зроблено для перерв і продуктивних пауз</footer></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script>
+const $=id=>document.getElementById(id);function show(id){['home','game','inventory','frames','market'].forEach(x=>$(x).classList.toggle('active',x===id))}function showHome(){show('home')}function showSettings(){document.getElementById('settings').classList.add('open');document.getElementById('settingsBackdrop').classList.add('open');renderFrameSelect();renderAvatar()}function closeSettings(){document.getElementById('settings').classList.remove('open');document.getElementById('settingsBackdrop').classList.remove('open')}function showInv(){show('inventory');renderInventory()}
+function showMarket(){show('market');renderMarket()}
+function renderMarket(){
+ $('marketBody').innerHTML=Object.entries(ITEM_INFO).map(([name,v])=>'<div style="width:150px;text-align:center;background:var(--panel2);border-radius:14px;padding:10px;border-bottom:4px solid '+RAR_COL[v[2]]+'"><img src="'+v[0]+'" style="width:110px;height:90px;object-fit:contain"><div style="font-size:13px;margin:6px 0">'+name+'</div><div class="score">'+(PRICES[name]||'?')+' 🪙</div><button class="primary" style="margin-top:6px" onclick="buyItem(\''+name.replace(/'/g,"\\'")+'\')">Купити</button></div>').join('');
+}
+function buyItem(name){
+ const price=PRICES[name];
+ if(getCoins()<price){alert('Недостатньо монет');return}
+ localStorage.setItem('caseCoins',String(getCoins()-price));
+ const inv=JSON.parse(localStorage.getItem('inv')||'[]');
+ inv.push({name,ri:ITEM_INFO[name][2]});
+ localStorage.setItem('inv',JSON.stringify(inv));
+ refreshWallet();toast('Куплено: '+name);
+}function showFrames(){show('frames');$('framesBody').innerHTML=FRAME_POOL.map(f=>'<div style="width:150px;text-align:center;background:var(--panel2);border-radius:14px;padding:10px"><img src="'+f.img+'" style="width:120px;height:120px;object-fit:contain"><div style="font-size:13px;margin-top:6px">'+f.name+'</div></div>').join('')}
+function setTheme(t){document.body.classList.remove('theme-blue','theme-midnight','theme-red','theme-wallpaper');if(t==='red')document.body.classList.add('theme-red');if(t==='blue')document.body.classList.add('theme-blue');if(t==='midnight')document.body.classList.add('theme-midnight');localStorage.setItem('portalTheme',t)}function setWallpaper(){let u=$('wall').value.trim();if(!u)return;document.body.classList.remove('theme-blue','theme-midnight');document.body.style.background=`linear-gradient(#07130fcc,#07130fdd),url("${u.replaceAll('"','')}") center/cover fixed`;localStorage.setItem('portalWallpaper',u)}
+const saved=localStorage.getItem('portalTheme');if(saved)setTheme(saved);const wp=localStorage.getItem('portalWallpaper');if(wp){$('wall').value=wp;setWallpaper()}
+function openGame(name){let old=$('gameContent');if(old._cleanup)old._cleanup();show('game');let c=$('gameContent');c.innerHTML='';const titles={snake:'Змійка',sudoku:'Судоку',chess:'Шахи','2048':'2048',calc:'Калькулятор',cases:'Кейси',frames:'Кейс рамок'};$('gameTitle').textContent=titles[name];({snake:snakeGame,sudoku:sudokuGame,chess:chessGame,'2048':game2048,calc:calculator,cases:caseSim,frames:c=>caseSim(c,FRAME_POOL)})[name](c)}
+function snakeGame(c){c.innerHTML='<div style="text-align:center"><div class="score">Рахунок: <span id="ss">0</span></div><canvas id="snakeCanvas" width="400" height="400"></canvas><div class="controls"><button id="snakeStart" class="primary">Старт / пауза</button><button id="snakeReset">Заново</button></div><p class="muted">Керування: WASD або стрілки. На телефоні можна свайпати по полю.</p></div>';let cv=$('snakeCanvas'),ctx=cv.getContext('2d'),timer=null,dir={x:1,y:0},next={x:1,y:0},snake,food,score,running=false;function reset(){snake=[{x:8,y:10},{x:7,y:10},{x:6,y:10}];food={x:14,y:10};score=0;dir={x:1,y:0};next={...dir};$('ss').textContent=0;draw()}function draw(){ctx.fillStyle='#09110e';ctx.fillRect(0,0,400,400);ctx.fillStyle='#51d69a';snake.forEach(p=>ctx.fillRect(p.x*20+2,p.y*20+2,16,16));ctx.fillStyle='#f5bd55';ctx.beginPath();ctx.arc(food.x*20+10,food.y*20+10,8,0,7);ctx.fill()}function tick(){dir=next;let h={x:snake[0].x+dir.x,y:snake[0].y+dir.y};if(h.x<0||h.y<0||h.x>=20||h.y>=20||snake.some(p=>p.x===h.x&&p.y===h.y)){stop();if(score)addCoins(score*2);alert('Гра завершена! Рахунок: '+score);return}snake.unshift(h);if(h.x===food.x&&h.y===food.y){score++;$('ss').textContent=score;do{food={x:Math.floor(Math.random()*20),y:Math.floor(Math.random()*20)}}while(snake.some(p=>p.x===food.x&&p.y===food.y))}else snake.pop();draw()}function stop(){running=false;clearInterval(timer);timer=null}function toggle(){if(running){stop();return}running=true;timer=setInterval(tick,115)}$('snakeStart').onclick=toggle;$('snakeReset').onclick=()=>{stop();reset()};const key=e=>{let m={ArrowUp:[0,-1],w:[0,-1],ArrowDown:[0,1],s:[0,1],ArrowLeft:[-1,0],a:[-1,0],ArrowRight:[1,0],d:[1,0]}[e.key];if(m&&!(m[0]===-dir.x&&m[1]===-dir.y)){next={x:m[0],y:m[1]};e.preventDefault()}};window.addEventListener('keydown',key);c._cleanup=()=>{stop();window.removeEventListener('keydown',key)};let sx=0,sy=0;cv.ontouchstart=e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY};cv.ontouchend=e=>{let dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;if(Math.abs(dx)>Math.abs(dy))next={x:Math.sign(dx),y:0};else next={x:0,y:Math.sign(dy)}};reset()}
+function game2048(c){
+c.innerHTML='<div style="text-align:center"><div class="score">Рахунок: <span id="s2048">0</span></div><div id="b2048" class="b2048"></div><div class="controls"><button class="primary" id="r2048">Нова гра</button></div><p class="muted">Керування: стрілки або WASD. На телефоні — свайпи.</p></div>';
+const B=$('b2048'), sc=$('s2048');
+for(let i=0;i<16;i++){const e=document.createElement('div');e.className='cell2';e.style.left=`calc(${(i%4)*25}% + 4px)`;e.style.top=`calc(${Math.floor(i/4)*25}% + 4px)`;B.append(e)}
+const COL={2:'#2b805e',4:'#2f8a66',8:'#2b7a8c',16:'#287b91',32:'#3d6aa8',64:'#6156a9',128:'#8a4fa0',256:'#a16b36',512:'#b5612a',1024:'#c28a25',2048:'#d4a017'};
+let g,score=0,busy=false;
+const pos=t=>{t.el.style.left=`calc(${t.c*25}% + 4px)`;t.el.style.top=`calc(${t.r*25}% + 4px)`};
+function mk(t,cls){t.el=document.createElement('div');t.el.className='tile2 '+cls;t.el.textContent=t.v;t.el.style.background=COL[t.v]||'#222';t.el.style.color=t.v>4?'#fff':'#eee';t.el.style.width='calc(25% - 8px)';t.el.style.height='calc(25% - 8px)';pos(t);B.append(t.el)}
+function spawn(){const e=[];for(let r=0;r<4;r++)for(let k=0;k<4;k++)if(!g[r][k])e.push([r,k]);if(!e.length)return;const [r,k]=e[Math.floor(Math.random()*e.length)];const t={v:Math.random()<.9?2:4,r,c:k};g[r][k]=t;mk(t,'new')}
+function canMove(){for(let r=0;r<4;r++)for(let k=0;k<4;k++){const t=g[r][k];if(!t)return true;if(k<3&&g[r][k+1]&&g[r][k+1].v===t.v)return true;if(r<3&&g[r+1][k]&&g[r+1][k].v===t.v)return true}return false}
+function reset(){B.querySelectorAll('.tile2').forEach(x=>x.remove());g=[0,1,2,3].map(()=>[null,null,null,null]);score=0;sc.textContent=0;busy=false;spawn();spawn()}
+function move(d){
+ if(busy)return;
+ const horiz=d==='left'||d==='right', rev=d==='right'||d==='down';
+ let moved=false;const gone=[];const next=[0,1,2,3].map(()=>[null,null,null,null]);
+ for(let k=0;k<4;k++){
+   const line=[];
+   for(let j=0;j<4;j++){const idx=rev?3-j:j;line.push(horiz?{r:k,c:idx}:{r:idx,c:k})}
+   const ts=[];line.forEach(p=>{const t=g[p.r][p.c];if(t)ts.push({t,from:p})});
+   let target=0;
+   for(let i=0;i<ts.length;i++){
+     const dest=line[target],a=ts[i];
+     if(i+1<ts.length&&ts[i+1].t.v===a.t.v){
+       const b=ts[i+1];score+=a.t.v*2;moved=true;
+       const m={v:a.t.v*2,r:dest.r,c:dest.c};next[dest.r][dest.c]=m;
+       a.t.r=b.t.r=dest.r;a.t.c=b.t.c=dest.c;pos(a.t);pos(b.t);
+       gone.push({a:a.t,b:b.t,m});i++;
+     } else {
+       if(a.from.r!==dest.r||a.from.c!==dest.c)moved=true;
+       a.t.r=dest.r;a.t.c=dest.c;next[dest.r][dest.c]=a.t;pos(a.t);
+     }
+     target++;
+   }
+ }
+ if(!moved)return;
+ busy=true;g=next;sc.textContent=score;
+ spawn();
+ setTimeout(()=>{
+   gone.forEach(({a,b,m})=>{a.el.remove();b.el.remove();mk(m,'merged')});
+   busy=false;
+   if(!canMove())setTimeout(()=>{if(score>=50)addCoins(Math.floor(score/50));alert('Ходи закінчилися. Рахунок: '+score)},50);
+ },160);
+}
+const key=e=>{const d={ArrowLeft:'left',a:'left',ArrowRight:'right',d:'right',ArrowUp:'up',w:'up',ArrowDown:'down',s:'down'}[e.key];if(d){e.preventDefault();move(d)}};
+window.addEventListener('keydown',key);c._cleanup=()=>window.removeEventListener('keydown',key);
+$('r2048').onclick=reset;
+let sx=0,sy=0;B.ontouchstart=e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY};
+B.ontouchend=e=>{const dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;if(Math.max(Math.abs(dx),Math.abs(dy))>20)move(Math.abs(dx)>Math.abs(dy)?(dx>0?'right':'left'):(dy>0?'down':'up'))};
+reset();
+}
+function sudokuGame(c){let paid=false;const puzzle=['530070000','600195000','098000060','800060003','400803001','700020006','060000280','000419005','000080079'];const solution=['534678912','672195348','198342567','859761423','426853791','713924856','961537284','287419635','345286179'];c.innerHTML='<div style="display:grid;justify-items:center;gap:12px"><div class="sudoku" id="sudokuBoard"></div><div class="controls"><button class="primary" id="checkSudoku">Перевірити</button><button id="resetSudoku">Очистити введене</button></div><p class="muted">Заповни порожні клітинки цифрами від 1 до 9.</p><div id="sudokuMsg" class="score"></div></div>';let b=$('sudokuBoard');puzzle.forEach((row,r)=>[...row].forEach((v,col)=>{let x=document.createElement('input');x.inputMode='numeric';x.maxLength=1;x.dataset.r=r;x.dataset.c=col;if(v!=='0'){x.value=v;x.disabled=true;x.className='given'}else x.oninput=()=>{x.value=x.value.replace(/[^1-9]/g,'').slice(0,1)};b.append(x)}));$('checkSudoku').onclick=()=>{let cells=[...b.children],ok=true,filled=true;cells.forEach(x=>{let v=x.value||'0',r=+x.dataset.r,col=+x.dataset.c;if(v==='0')filled=false;if(v!==solution[r][col])ok=false});if(filled&&ok&&!paid){paid=true;addCoins(50)}$('sudokuMsg').textContent=!filled?'Ще є порожні клітинки.':ok?'Чудово! Судоку розв’язано 🎉':'Поки є помилки — перевір цифри.'};$('resetSudoku').onclick=()=>{[...b.children].forEach(x=>{if(!x.disabled)x.value=''});$('sudokuMsg').textContent=''}}
+function chessGame(c){let board='rnbqkbnrpppppppp................................PPPPPPPPRNBQKBNR'.split(''),turn='w',sel=-1;const glyph={r:'♜',n:'♞',b:'♝',q:'♛',k:'♚',p:'♟',R:'♖',N:'♘',B:'♗',Q:'♕',K:'♔',P:'♙'};c.innerHTML='<div style="display:grid;justify-items:center;gap:12px"><div id="chessStatus" class="score">Хід білих</div><div class="chess" id="chessBoard"></div><div class="controls"><button id="chessReset">Нова партія</button></div><p class="muted">Демо-режим: локальна гра на одному пристрої. Підтримуються базові ходи фігур; рокіровка, взяття на проході та повна перевірка шаху ще не реалізовані.</p></div>';function side(p){return !p?'-':p===p.toUpperCase()?'w':'b'}function legal(from,to){let p=board[from],q=board[to],r=Math.floor(from/8),f=from%8,R=Math.floor(to/8),F=to%8,dr=R-r,df=F-f;if(!p||side(p)!==turn||side(q)===turn)return false;let t=p.toLowerCase(),path=(sr,sf)=>{let y=r+sr,x=f+sf;while(y!==R||x!==F){if(board[y*8+x])return false;y+=sr;x+=sf}return true};if(t==='p'){let d=turn==='w'?-1:1,start=turn==='w'?6:1;if(df===0&&!q&&(dr===d||r===start&&dr===2*d&&!board[(r+d)*8+f]))return true;if(Math.abs(df)===1&&dr===d&&q)return true;return false}if(t==='n')return Math.abs(dr)*Math.abs(df)===2;if(t==='k')return Math.max(Math.abs(dr),Math.abs(df))===1;if(t==='r')return (dr===0||df===0)&&path(Math.sign(dr),Math.sign(df));if(t==='b')return Math.abs(dr)===Math.abs(df)&&path(Math.sign(dr),Math.sign(df));if(t==='q')return (dr===0||df===0||Math.abs(dr)===Math.abs(df))&&path(Math.sign(dr),Math.sign(df));return false}function draw(){let el=$('chessBoard');el.innerHTML='';board.forEach((p,i)=>{let x=document.createElement('button');x.className='square '+((Math.floor(i/8)+i%8)%2?'dark':'light')+(sel===i?' selected':'');x.textContent=glyph[p]||'';x.onclick=()=>click(i);el.append(x)})}function click(i){if(sel<0){if(board[i]&&side(board[i])===turn)sel=i}else if(i===sel)sel=-1;else if(legal(sel,i)){let p=board[sel];board[i]=p;board[sel]='.';if(p==='P'&&Math.floor(i/8)===0)board[i]='Q';if(p==='p'&&Math.floor(i/8)===7)board[i]='q';turn=turn==='w'?'b':'w';$('chessStatus').textContent=turn==='w'?'Хід білих':'Хід чорних';sel=-1}else if(board[i]&&side(board[i])===turn)sel=i;draw()}function reset(){board='rnbqkbnrpppppppp................................PPPPPPPPRNBQKBNR'.split('');turn='w';sel=-1;$('chessStatus').textContent='Хід білих';draw()}$('chessReset').onclick=reset;draw()}
+function calculator(c){c.innerHTML='<div style="max-width:340px;margin:auto"><input id="calcDisplay" readonly value="0" style="width:100%;padding:18px;font-size:26px;text-align:right;border-radius:12px;border:1px solid var(--line);background:var(--panel2);color:var(--text);margin-bottom:10px"><div class="grid" style="grid-template-columns:repeat(4,1fr);gap:7px">'+['7','8','9','/','4','5','6','*','1','2','3','-','0','.','=','+','C'].map(x=>`<button onclick="calcKey('${x}')">${x}</button>`).join('')+'</div></div>';window.calcKey=x=>{let d=$('calcDisplay');if(x==='C')d.value='0';else if(x==='='){try{if(!/^[0-9+*/.() -]+$/.test(d.value))throw 0;d.value=String(Function('return ('+d.value+')')())}catch{d.value='Помилка'}}else d.value=d.value==='0'?x:d.value+x}}
+
+/* ===== анімований фон ===== */
+function toggleAnim(){const on=!document.body.classList.contains('animbg');document.body.classList.toggle('animbg',on);localStorage.setItem('animbg',on?'1':'0')}
+
+/* ===== адмін: перейменування кнопок ===== */
+const ADMIN_PASS='change-me-123';
+const NAME_TARGETS={home:'.nav button:nth-child(1)',inv:'.nav button:nth-child(2)',settings:'.nav button:nth-child(3)',snake:'.card button[onclick*="openGame(\'snake\')"]',sudoku:'.card button[onclick*="openGame(\'sudoku\')"]',chess:'.card button[onclick*="openGame(\'chess\')"]','2048':'.card button[onclick*="openGame(\'2048\')"]',cases:'.card button[onclick*="openGame(\'cases\')"]'};
+function applyNames(){const n=JSON.parse(localStorage.getItem('btnNames')||'{}');for(const k in NAME_TARGETS){const el=document.querySelector(NAME_TARGETS[k]);if(el&&n[k])el.textContent=n[k]}}
+function unlockAdmin(){if(localStorage.getItem('isAdmin')==='1'){renderAdmin();return}if(prompt('Пароль адміна:')===ADMIN_PASS){localStorage.setItem('isAdmin','1');renderAdmin()}else alert('Невірний пароль')}
+function logoutAdmin(){localStorage.removeItem('isAdmin');renderAdmin()}
+function renderAdmin(){const box=$('adminPanel');if(!box)return;if(localStorage.getItem('isAdmin')!=='1'){box.classList.add('hidden');box.innerHTML='';return}box.classList.remove('hidden');const n=JSON.parse(localStorage.getItem('btnNames')||'{}');box.innerHTML='<h3>Адмін: назви кнопок</h3>'+Object.keys(NAME_TARGETS).map(k=>{const el=document.querySelector(NAME_TARGETS[k]);const val=(n[k]||(el?el.textContent:'')).replace(/"/g,'&quot;');return '<div class="settings-row" style="margin:6px 0"><span class="muted" style="min-width:90px">'+k+'</span><input data-k="'+k+'" value="'+val+'" style="flex:1;padding:8px;border-radius:8px;border:1px solid var(--line);background:var(--panel2);color:var(--text)"></div>'}).join('')+'<div class="settings-row"><button class="primary" onclick="saveNames()">Зберегти</button><button onclick="resetNames()">Скинути назви</button><button onclick="logoutAdmin()">Вийти з адмін</button></div>'}
+function saveNames(){const n={};document.querySelectorAll('#adminPanel input').forEach(i=>{if(i.value.trim())n[i.dataset.k]=i.value.trim()});localStorage.setItem('btnNames',JSON.stringify(n));applyNames();renderAdmin();alert('Збережено')}
+function resetNames(){localStorage.removeItem('btnNames');location.reload()}
+
+/* ===== симулятор кейсів (вигадані предмети) ===== */
+function caseSim(c,pool){
+const RAR=[['Звичайний','#b0b8c4',60,10],['Рідкісний','#4b8bf5',25,40],['Епічний','#a855f7',10,120],['Легендарний','#eab308',4,400],['Міфічний','#ef4444',1,1500]];
+const ITEMS=(pool||Object.entries(ITEM_INFO).filter(([n,v])=>v[1]!=='frame').map(([name,v])=>({name,img:v[0],ri:v[2]})));
+const ITEM_W=110, WIN_IDX=32, CASE_COST=100;
+let coins=getCoins(), inv=JSON.parse(localStorage.getItem('inv')||'[]'), spinning=false;
+c.innerHTML='<div style="text-align:center"><div class="score">Монети: <span id="cCoins"></span></div>'+
+'<div id="cStripWrap" style="overflow:hidden;position:relative;width:min(92vw,520px);margin:14px auto;border:2px solid var(--line);border-radius:12px;background:var(--panel2)">'+
+'<div style="position:absolute;left:50%;top:0;bottom:0;width:3px;background:#facc15;z-index:2;transform:translateX(-50%)"></div>'+
+'<div id="cStrip" style="display:flex;width:max-content"></div></div>'+
+'<div class="controls"><button class="primary" id="cOpen">Відкрити кейс ('+CASE_COST+' монет)</button><button id="cSellAll">Продати все</button></div>'+
+'<div id="cResult" class="score" style="min-height:28px;margin-top:8px"></div>'+
+'<h3 style="margin-top:18px">Інвентар</h3><div id="cInv" class="muted" style="font-size:13px"></div>'+
+'<p class="muted">Віртуальні монети і вигадані предмети, нічого справжнього.</p></div>';
+const VAL=[10,30,80,200,1000];
+function tile(it){return '<div style="flex:0 0 '+ITEM_W+'px;width:'+ITEM_W+'px;height:118px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:12px;border-bottom:4px solid '+RAR[it.ri][1]+';background:var(--panel);box-sizing:border-box;text-align:center;padding:4px"><img src="'+it.img+'" style="height:60px;max-width:100%;object-fit:contain"><div>'+it.name+'</div><div style="color:#facc15;font-size:11px">'+(PRICES[it.name]||'')+' 🪙</div></div>'}
+function rnd(){return ITEMS[Math.floor(Math.random()*ITEMS.length)]}
+function pick(){const x=Math.random()*100;let acc=0,ri=0;for(let i=0;i<RAR.length;i++){acc+=RAR[i][2];if(x<acc){ri=i;break}}const pool=ITEMS.filter(i=>i.ri===ri);return pool[Math.floor(Math.random()*pool.length)]}
+function setCoins(v){coins=v;localStorage.setItem('caseCoins',String(v));$('cCoins').textContent=coins;refreshWallet()}
+function renderInv(){$('cInv').textContent=inv.length?inv.map(i=>i.name).join(', '):'Порожньо'}
+function openCase(){
+ if(spinning)return;
+ if(coins<CASE_COST){$('cResult').textContent='Недостатньо монет';return}
+ spinning=true;setCoins(coins-CASE_COST);$('cResult').textContent='';
+ const win=pick();const strip=[];
+ for(let i=0;i<WIN_IDX+15;i++)strip.push(i===WIN_IDX?win:rnd());
+ const s=$('cStrip');s.style.transition='none';s.style.transform='translateX(0)';s.innerHTML=strip.map(tile).join('');
+ const wrapW=$('cStripWrap').clientWidth;
+ const target=WIN_IDX*ITEM_W+ITEM_W/2-wrapW/2;
+ void s.offsetWidth;
+ s.style.transition='transform 4s cubic-bezier(.12,.7,.1,1)';
+ s.style.transform='translateX('+(-target)+'px)';
+ setTimeout(()=>{spinning=false;inv.push(win);localStorage.setItem('inv',JSON.stringify(inv));$('cResult').textContent='Випало: '+win.name+' ('+RAR[win.ri][0]+')';$('cResult').style.color=RAR[win.ri][1];renderInv()},4100);
+}
+function sellAll(){if(spinning)return;const sum=inv.reduce((a,i)=>a+VAL[i.ri],0);setCoins(coins+sum);$('cResult').textContent=sum?'Продано на '+sum+' монет':'Інвентар порожній';$('cResult').style.color='';inv=[];localStorage.setItem('inv','[]');renderInv()}
+$('cOpen').onclick=openCase;$('cSellAll').onclick=sellAll;
+const init=[];for(let i=0;i<12;i++)init.push(rnd());$('cStrip').innerHTML=init.map(tile).join('');
+setCoins(coins);renderInv();
+}
+
+/* старт */
+document.body.classList.toggle('animbg',localStorage.getItem('animbg')==='1');
+applyNames();
+renderAdmin();
+
+/* ===== інформація про предмети ===== */
+const ITEM_INFO={'Void Karambit':['skins/skin01.png','weapon',4],'Neon Butterfly':['skins/skin02.png','weapon',4],'Golden Bayonet':['skins/skin03.png','weapon',4],'Cobalt Fang':['skins/skin04.png','weapon',4],'Ember Daggers':['skins/skin05.png','weapon',4],'Royal Deagle':['skins/skin06.png','weapon',0],'Silent Specter':['skins/skin07.png','weapon',0],'Dark Ornate':['skins/skin08.png','weapon',0],'Purple Reaper':['skins/skin09.png','weapon',0],'Plasma Five-Seven':['skins/skin10.png','weapon',0],'Crimson AK':['skins/skin11.png','weapon',2],'Neon Storm M4':['skins/skin12.png','weapon',2],'Golden Pulse':['skins/skin13.png','weapon',2],'Void AWP':['skins/skin14.png','weapon',2],'Ember FAMAS':['skins/skin15.png','weapon',2],'Tiger MAC-10':['skins/skin16.png','weapon',1],'Frost MP9':['skins/skin17.png','weapon',1],'Brass Vector':['skins/skin18.png','weapon',1],'Nebula P90':['skins/skin19.png','weapon',1],'Inferno Shotgun':['skins/skin20.png','weapon',1],'Ice Breaker':['skins/skin21.png','weapon',3],'Phantom Gloves':['skins/skin22.png','glove',3]};
+Object.assign(ITEM_INFO,{'Неонова фіолетова':['skins/frame01.png','frame',0],'Золота з шипами':['skins/frame02.png','frame',0],'Срібляста мінімалістична':['skins/frame03.png','frame',0],'Дерев’яна з листям':['skins/frame04.png','frame',0],'Кристальна блакитна':['skins/frame05.png','frame',0],'Зоряна синя':['skins/frame06.png','frame',0],'Кіберпанк фіолетова':['skins/frame07.png','frame',0],'Квіткова рожева':['skins/frame08.png','frame',0],'Класична золота':['skins/frame09.png','frame',1],'Райдужна голографічна':['skins/frame10.png','frame',1],'Шипаста фіолетово-сіра':['skins/frame11.png','frame',1],'Ніжна рожева з перлами':['skins/frame12.png','frame',1],'Вогняна':['skins/frame13.png','frame',1],'Крижана блакитна':['skins/frame14.png','frame',1],'Космічна фіолетова':['skins/frame15.png','frame',2],'Зелена з лозою':['skins/frame16.png','frame',2],'Золота з рунами':['skins/frame17.png','frame',2],'Неонова бірюзова':['skins/frame18.png','frame',2],'Перлова біла':['skins/frame19.png','frame',3],'Червона з шипами':['skins/frame20.png','frame',4]});
+const FRAME_POOL=Object.entries(ITEM_INFO).filter(([n,v])=>v[1]==='frame').map(([name,v])=>({name,img:v[0],ri:v[2]}));
+const PRICES={"VoidKarambit":4850,"NeonButterfly":5420,"GoldenBayonet":3780,"CobaltFang":2650,"EmberDaggers":2310,"RoyalDeagle":1680,"SilentSpecter":1120,"DarkOrnate":980,"PurpleReaper":1240,"PlasmaFive-Seven":790,"CrimsonAK":3560,"NeonStormM4":3120,"GoldenPulse":2450,"VoidAWP":6750,"EmberFAMAS":1480,"TigerMAC-10":860,"FrostMP9":740,"BrassVector":970,"NebulaP90":1890,"InfernoShotgun":1150,"IceBreaker":1060,"PhantomGloves":4280,"Неоновафіолетова":450,"Золотазшипами":980,"Сріблястамінімалістична":280,"Дерев’яназлистям":520,"Кристальнаблакитна":750,"Зорянасиня":610,"Кіберпанкфіолетова":1150,"Квітковарожева":480,"Класичназолота":690,"Райдужнаголографічна":1350,"Шипастафіолетово-сіра":870,"Ніжнарожевазперлами":640,"Вогняна":1250,"Крижанаблакитна":920,"Космічнафіолетова":1080,"Зеленазлозою":490,"Золотазрунами":1190,"Неоновабірюзова":730,"Перловабіла":810,"Червоназшипами":990};
+const RAR_COL=['#b0b8c4','#4b8bf5','#a855f7','#eab308','#ef4444'];
+function renderInventory(){
+ const inv=JSON.parse(localStorage.getItem('inv')||'[]');
+ const groups={weapon:'🔫 Зброя',glove:'🧤 Рукавиці',frame:'🖼️ Рамки',acc:'✨ Аксесуари'};
+ let html='';
+ for(const g in groups){
+  const list=inv.filter(i=>ITEM_INFO[i.name]&&ITEM_INFO[i.name][1]===g);
+  html+='<h3 style="margin-top:16px">'+groups[g]+' ('+list.length+')</h3>';
+  html+=list.length?'<div style="display:flex;flex-wrap:wrap;gap:10px">'+list.map(i=>'<div style="width:110px;height:100px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--panel2);border-bottom:4px solid '+RAR_COL[i.ri]+';border-radius:12px;font-size:12px;text-align:center;padding:4px"><img src="'+ITEM_INFO[i.name][0]+'" style="height:56px;max-width:100%;object-fit:contain">'+i.name+'</div>').join('')+'</div>':'<p class="muted">Поки порожньо</p>';
+ }
+ $('invBody').innerHTML=html;
+}
+
+/* ===== спільний гаманець ===== */
+function getCoins(){return +(localStorage.getItem('caseCoins')||1000)}
+function addCoins(n){localStorage.setItem('caseCoins',String(getCoins()+n));refreshWallet();toast('+'+n+' 🪙')}
+function getDiamonds(){return +(localStorage.getItem('diamonds')||0)}
+function refreshWallet(){const w=$('walletBox');if(w)w.textContent='🪙 '+getCoins()+'  💎 '+getDiamonds()}
+function toast(t){const d=document.createElement('div');d.textContent=t;d.style.cssText='position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--accent);color:#06130e;padding:10px 18px;border-radius:12px;font-weight:800;z-index:99;transition:opacity .5s';document.body.append(d);setTimeout(()=>d.style.opacity=0,1200);setTimeout(()=>d.remove(),1800)}
+refreshWallet();
+
+/* ===== меню предмета в інвентарі ===== */
+const RAR_NAMES=['Звичайний','Рідкісний','Епічний','Легендарний','Міфічний'];
+const QUICK_SELL_RATE=0.4;
+function renderInventory(){
+ const inv=JSON.parse(localStorage.getItem('inv')||'[]');
+ const groups={weapon:'🔫 Зброя',glove:'🧤 Рукавиці',frame:'🖼️ Рамки',acc:'✨ Аксесуари'};
+ let html='<p class="muted" style="font-size:12px">Натисни правою кнопкою на предмет (на телефоні — довге натискання).</p>';
+ for(const g in groups){
+  const list=inv.map((it,idx)=>({it,idx})).filter(x=>ITEM_INFO[x.it.name]&&ITEM_INFO[x.it.name][1]===g);
+  html+='<h3 style="margin-top:16px">'+groups[g]+' ('+list.length+')</h3>';
+  html+=list.length?'<div style="display:flex;flex-wrap:wrap;gap:10px">'+list.map(({it,idx})=>'<div oncontextmenu="openItemMenu(event,'+idx+');return false" style="cursor:context-menu;width:110px;height:100px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--panel2);border-bottom:4px solid '+RAR_COL[it.ri]+';border-radius:12px;font-size:12px;text-align:center;padding:4px"><img src="'+ITEM_INFO[it.name][0]+'" style="height:56px;max-width:100%;object-fit:contain">'+it.name+'<br><span style="color:#facc15;font-size:11px">'+(PRICES[it.name]||'')+' 🪙</span></div>').join('')+'</div>':'<p class="muted">Поки порожньо</p>';
+ }
+ $('invBody').innerHTML=html;
+}
+function closeItemMenu(){const m=document.getElementById('itemMenu');if(m)m.remove()}
+function openItemMenu(e,idx){
+ closeItemMenu();
+ const inv=JSON.parse(localStorage.getItem('inv')||'[]');const it=inv[idx];if(!it)return;
+ const quick=Math.round((PRICES[it.name]||0)*QUICK_SELL_RATE);
+ const m=document.createElement('div');m.id='itemMenu';
+ m.style.cssText='position:fixed;left:'+Math.min(e.clientX,window.innerWidth-210)+'px;top:'+Math.min(e.clientY,window.innerHeight-170)+'px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:6px;z-index:200;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:4px;min-width:200px';
+ m.innerHTML='<div style="padding:6px 10px;font-weight:800">'+it.name+'</div>'+
+  '<button onclick="viewItem('+idx+')">🔍 Оглянути</button>'+
+  '<button onclick="quickSell('+idx+')">💰 Швидко продати ('+quick+' 🪙)</button>'+
+  '<button disabled>🏷️ На аукціон (скоро)</button>';
+ document.body.append(m);
+ setTimeout(()=>document.addEventListener('click',closeItemMenu,{once:true}),0);
+}
+function viewItem(idx){
+ closeItemMenu();
+ const inv=JSON.parse(localStorage.getItem('inv')||'[]');const it=inv[idx];if(!it)return;
+ alert(it.name+'\nРідкість: '+RAR_NAMES[it.ri]+'\nЦіна в маркеті: '+(PRICES[it.name]||'—')+' 🪙');
+}
+function quickSell(idx){
+ closeItemMenu();
+ const inv=JSON.parse(localStorage.getItem('inv')||'[]');const it=inv[idx];if(!it)return;
+ const quick=Math.round((PRICES[it.name]||0)*QUICK_SELL_RATE);
+ if(!confirm('Продати '+it.name+' за '+quick+' 🪙?'))return;
+ inv.splice(idx,1);
+ localStorage.setItem('inv',JSON.stringify(inv));
+ addCoins(quick);
+ renderInventory();
+}
+
+/* ===== туторіал ===== */
+const TUT=[
+ ['Ласкаво просимо 👋','Це портал класу: ігри, кейси, інвентар і маркет. Монети 🪙 заробляються в іграх.'],
+ ['Ігри 🎮','Змійка, 2048, судоку і шахи. За рахунок у змійці і 2048, а також за розв’язану судоку дають монети.'],
+ ['Кейси 🎁','За монети відкривай кейси зі зброєю і рамками. Рідкість від звичайного до міфічного.'],
+ ['Інвентар 🎒','Натисни правою кнопкою (на телефоні — довге натискання) на предмет: оглянути, швидко продати або аукціон (скоро).'],
+ ['Маркет 🛒','Купуй предмети за монети. Діаманти 💎 поки що в розробці.'],
+ ['Тема 🎨','Обери тему, яка тобі подобається. Її завжди можна змінити в налаштуваннях.'],
+ ['Готово ✅','Туторіал можна відкрити знову в Налаштуваннях → 📖 Туторіал.']
+];
+let tutPage=0;
+function showTutorial(){tutPage=0;renderTut()}
+function renderTut(){
+ let o=document.getElementById('tutorial');
+ if(!o){o=document.createElement('div');o.id='tutorial';o.className='overlay';document.body.append(o)}
+ const [t,x]=TUT[tutPage];
+ const themes=t.startsWith('Тема')?'<div class="settings-row" style="justify-content:center;margin:10px 0"><button onclick="setTheme(\'green\')">🟢 Emerald</button><button onclick="setTheme(\'blue\')">🟣 Blue</button><button onclick="setTheme(\'midnight\')">⚫ Midnight</button><button onclick="setTheme(\'red\')">🔴 Red</button></div>':'';
+ o.innerHTML='<div class="modal"><div class="eyebrow">Туторіал '+(tutPage+1)+'/'+TUT.length+'</div><h2>'+t+'</h2><p style="color:var(--muted);line-height:1.6">'+x+'</p>'+themes+'<div class="controls"><button onclick="tutPrev()" '+(tutPage===0?'disabled':'')+'>← Назад</button>'+(tutPage<TUT.length-1?'<button class="primary" onclick="tutNext()">Далі →</button>':'<button class="primary" onclick="finishTut()">Почати</button>')+'</div><button style="margin-top:10px;background:none;border:none;color:var(--muted)" onclick="closeTut()">Пропустити</button></div>';
+}
+function tutNext(){tutPage++;renderTut()}
+function tutPrev(){tutPage--;renderTut()}
+function closeTut(){localStorage.setItem('tutorialDone','1');const o=document.getElementById('tutorial');if(o)o.remove()}
+
+/* ===== огляд предмета з поворотом ===== */
+function viewItem(idx){
+ closeItemMenu();
+ const inv=JSON.parse(localStorage.getItem('inv')||'[]');const it=inv[idx];if(!it)return;
+ const old=document.getElementById('inspect');if(old)old.remove();
+ const o=document.createElement('div');o.id='inspect';o.className='overlay';
+ o.innerHTML='<div class="modal"><h2 style="margin:0 0 4px">'+it.name+'</h2><div style="color:'+RAR_COL[it.ri]+';font-weight:800">'+RAR_NAMES[it.ri]+'</div>'+
+  '<div id="stage" style="perspective:700px;height:250px;display:grid;place-items:center;margin:10px 0;touch-action:none;cursor:grab"><img id="spinImg" src="'+ITEM_INFO[it.name][0]+'" draggable="false" style="width:200px;height:200px;object-fit:contain;transition:transform .15s;filter:drop-shadow(0 14px 20px #000a);user-select:none"></div>'+
+  '<p class="muted" style="font-size:12px">Крути мишкою або пальцем. Ціна в маркеті: '+(PRICES[it.name]||'—')+' 🪙</p><button onclick="document.getElementById(\'inspect\').remove()">Закрити</button></div>';
+ document.body.append(o);
+ const stage=o.querySelector('#stage'),img=o.querySelector('#spinImg');
+ let rx=0,ry=0,drag=null;
+ const apply=()=>{img.style.transform='rotateX('+rx.toFixed(1)+'deg) rotateY('+ry.toFixed(1)+'deg)'};
+ stage.addEventListener('pointerdown',e=>{drag={x:e.clientX,y:e.clientY,rx,ry};stage.setPointerCapture(e.pointerId)});
+ stage.addEventListener('pointermove',e=>{
+   if(drag){ry=drag.ry+(e.clientX-drag.x)*0.6;rx=drag.rx-(e.clientY-drag.y)*0.4}
+   else{const r=stage.getBoundingClientRect();ry=((e.clientX-r.left)/r.width-0.5)*30;rx=-((e.clientY-r.top)/r.height-0.5)*30}
+   apply();
+ });
+ stage.addEventListener('pointerup',()=>{drag=null});
+ stage.addEventListener('pointerleave',()=>{if(!drag){rx=0;ry=0;apply()}});
+ apply();
+}
+
+/* старт: туторіал при першому відкритті */
+if(localStorage.getItem('tutorialDone')!=='1')showTutorial();
+
+/* ===== вибір гри після туторіалу ===== */
+function finishTut(){closeTut();showGamePicker()}
+function showGamePicker(){
+ closePicker();
+ const games=[['snake','🐍','Змійка'],['2048','🔢','2048'],['sudoku','🧩','Судоку'],['chess','♟️','Шахи'],['cases','🎁','Кейси'],['frames','💠','Кейс рамок']];
+ const o=document.createElement('div');o.id='picker';o.className='overlay';
+ o.innerHTML='<div class="modal" style="width:min(94vw,520px)"><div class="eyebrow">Обери гру</div><h2>З чого почнемо?</h2><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px">'+
+  games.map(([id,ic,t])=>'<button class="pick" onclick="pickGame(\''+id+'\')"><span style="font-size:34px;display:block;margin-bottom:4px">'+ic+'</span>'+t+'</button>').join('')+
+  '</div><button style="margin-top:14px;background:none;border:none;color:var(--muted)" onclick="closePicker()">Пізніше</button></div>';
+ document.body.append(o);
+}
+function pickGame(id){closePicker();openGame(id)}
+function closePicker(){const o=document.getElementById('picker');if(o)o.remove()}
+
+/* ===== Supabase: акаунти і хмарне збереження ===== */
+const SB_URL='https://yesvvxlarpmlylnskcdk.supabase.co';
+const SB_KEY='sb_publishable_EaDh9iuGQ_1_-1bay0PPpA_U4tF13vC';
+const sb=supabase.createClient(SB_URL,SB_KEY);
+let sbUser=null, lastSaved='', authMode='login';
+
+function snapshot(){return JSON.stringify({c:getCoins(),d:getDiamonds(),i:JSON.parse(localStorage.getItem('inv')||'[]')})}
+
+async function ensureProfile(){
+  const name=(sbUser.user_metadata&&sbUser.user_metadata.username)||sbUser.email.split('@')[0];
+  await sb.from('profiles').upsert({id:sbUser.id,username:name},{onConflict:'id',ignoreDuplicates:true});
+}
+async function loadProfile(){
+  const {data,error}=await sb.from('profiles').select('*').eq('id',sbUser.id).single();
+  if(error||!data)return;
+  localStorage.setItem('caseCoins',String(data.coins));
+  localStorage.setItem('diamonds',String(data.diamonds));
+  localStorage.setItem('inv',JSON.stringify(data.inventory||[]));
+  lastSaved=snapshot();
+  refreshWallet();
+  updateAccountUI();
+}
+async function saveCloud(){
+  if(!sbUser)return;
+  const snap=snapshot();
+  if(snap===lastSaved)return;
+  const {error}=await sb.from('profiles').update({
+    coins:getCoins(),diamonds:getDiamonds(),inventory:JSON.parse(localStorage.getItem('inv')||'[]')
+  }).eq('id',sbUser.id);
+  if(!error)lastSaved=snap;
+}
+setInterval(saveCloud,3000);
+
+function updateAccountUI(){
+  const el=document.getElementById('accountLabel');
+  if(!el)return;
+  el.textContent=sbUser?('Увійшов: '+((sbUser.user_metadata&&sbUser.user_metadata.username)||sbUser.email)):'Гість (вхід не виконано)';
+}
+
+function closeAuth(){const o=document.getElementById('authModal');if(o)o.remove()}
+function setAuthMode(m){
+  authMode=m;
+  $('regFields').classList.toggle('hidden',m!=='reg');
+  $('authTitle').textContent=m==='reg'?'Реєстрація':'Вхід';
+  $('authGo').textContent=m==='reg'?'Зареєструватися':'Увійти';
+  $('tabLogin').className=m==='login'?'primary':'';
+  $('tabReg').className=m==='reg'?'primary':'';
+  $('authMsg').textContent='';
+}
+function openAuth(){
+  closeAuth();
+  const o=document.createElement('div');o.id='authModal';o.className='overlay';
+  if(sbUser){
+    o.innerHTML='<div class="modal"><div class="eyebrow">Акаунт</div><h2>'+((sbUser.user_metadata&&sbUser.user_metadata.username)||sbUser.email)+'</h2><p class="muted" style="font-size:13px">Монети, діаманти й інвентар зберігаються в хмарі і доступні з будь-якого пристрою.</p><div class="controls"><button class="primary" onclick="closeAuth()">Ок</button><button onclick="logout()">Вийти</button></div></div>';
+  } else {
+    o.innerHTML='<div class="modal"><p style="font-size:18px;margin:0 0 8px">👋 Привіт, Волтере!</p><div class="eyebrow">Акаунт</div><h2 id="authTitle">Вхід</h2>'+
+      '<div class="controls" style="margin:8px 0"><button id="tabLogin" class="primary" onclick="setAuthMode(\'login\')">Вхід</button><button id="tabReg" onclick="setAuthMode(\'reg\')">Реєстрація</button></div>'+
+      '<div id="regFields" class="hidden" style="margin-bottom:8px"><input id="authUser" class="inp" placeholder="Нікнейм"></div>'+
+      '<div style="display:grid;gap:8px"><input id="authEmail" class="inp" type="email" placeholder="Пошта"><input id="authPass" class="inp" type="password" placeholder="Пароль (мін. 6 символів)"></div>'+
+      '<p id="authMsg" class="muted" style="font-size:13px;min-height:36px;margin:8px 0"></p>'+
+      '<div class="controls"><button class="primary" id="authGo" onclick="doAuth()">Увійти</button><button onclick="closeAuth()">Закрити</button></div></div>';
+  }
+  document.body.append(o);
+  if(!sbUser)setAuthMode(authMode);
+}
+
+async function doAuth(){
+  const email=$('authEmail').value.trim(), pass=$('authPass').value, msg=$('authMsg');
+  if(!email||pass.length<6){msg.textContent='Введи пошту і пароль (мін. 6 символів)';return}
+  msg.textContent='Зачекай...';
+  if(authMode==='reg'){
+    const username=$('authUser').value.trim();
+    if(!username){msg.textContent='Введи нікнейм';return}
+    const {data,error}=await sb.auth.signUp({email,password:pass,options:{data:{username}}});
+    if(error){msg.textContent='Помилка: '+error.message;return}
+    if(!data.session){msg.textContent='Перевір пошту і натисни посилання з листа. Потім увійди.';return}
+    sbUser=data.user;
+  } else {
+    const {data,error}=await sb.auth.signInWithPassword({email,password:pass});
+    if(error){msg.textContent='Помилка: '+error.message;return}
+    sbUser=data.user;
+  }
+  await ensureProfile();
+  await loadProfile();
+  closeAuth();
+  toast('Вхід виконано 🎉');
+}
+
+async function logout(){
+  await sb.auth.signOut();
+  sbUser=null;lastSaved='';
+  ['caseCoins','diamonds','inv'].forEach(k=>localStorage.removeItem(k));
+  refreshWallet();updateAccountUI();closeAuth();
+  toast('Ви вийшли');
+}
+
+(async()=>{
+  const {data:{session}}=await sb.auth.getSession();
+  if(session){sbUser=session.user;await ensureProfile();await loadProfile();}
+  updateAccountUI();
+})();
+
+/* ===== випадкові меми ===== */
+const MEMES=[
+ 'Привіт, Волтере! 👋 (той момент, коли хімія стає особистою)',
+ 'Де детонатор? 💣 Знаю, знаю, я вже шукаю по всьому класу.',
+ 'Нагадую: сьогодні пʼятниця, а вчитель знову каже "ще одна перевірка". 😅',
+ 'Коли тебе питають домашку, а ти вже в грі на 2048. 🎮',
+ 'Я не казав "нічого". Я казав "трохи більше монет". 💰',
+ 'Не треба драм, це просто кейс. Ну, майже просто. 🎁',
+ 'Кожна стримана емоція — це фінал сезону. 📺',
+ 'Коли вчитель каже "це не на оцінку", а ти вже в усьому класі найшвидший. 🏃',
+ 'Пішли додому? Ні, ще один кейс. Один. Останній. 🙃',
+ 'Ти думаєш, я не знаю, де заховані монети? Я сам їх туди і поклав. 🪙',
+ 'Коли у тебе міфічний ніж, а друзі кажуть "це просто скін". 🔪',
+ 'Гра не закінчилась, поки ти не сказав "гра закінчилась". 🐍',
+];
+function showMeme(){
+ let o=document.getElementById('memeModal');if(o)o.remove();
+ o=document.createElement('div');o.id='memeModal';o.className='overlay';
+ const pick=MEMES[Math.floor(Math.random()*MEMES.length)];
+ o.innerHTML='<div class="modal"><div class="eyebrow">Прикол дня</div><p style="font-size:20px;line-height:1.5;margin:14px 0">'+pick+'</p><div class="controls"><button class="primary" onclick="showMeme()">🎲 Ще</button><button onclick="document.getElementById(\'memeModal\').remove()">Закрити</button></div></div>';
+ document.body.append(o);
+}
+
+/* ===== нагадування про Classroom ===== */
+function dismissReminder(){localStorage.setItem('classroomRemind',new Date().toDateString());const b=document.getElementById('reminderBanner');if(b)b.style.display='none'}
+if(localStorage.getItem('classroomRemind')===new Date().toDateString()){const b=document.getElementById('reminderBanner');if(b)b.style.display='none'}
+
+/* ===== панель налаштувань: фон, аватар, рамка, нік ===== */
+(function(){const b=document.createElement('div');b.id='settingsBackdrop';b.onclick=closeSettings;document.body.append(b)})();
+function renderFrameSelect(){
+  const sel=$('frameSelect');if(!sel)return;
+  const inv=JSON.parse(localStorage.getItem('inv')||'[]');
+  const frames=[...new Set(inv.filter(i=>ITEM_INFO[i.name]&&ITEM_INFO[i.name][1]==='frame').map(i=>i.name))];
+  const cur=localStorage.getItem('avatarFrame')||'';
+  sel.innerHTML='<option value="">Без рамки</option>'+frames.map(f=>'<option value="'+f+'"'+(f===cur?' selected':'')+'>'+f+'</option>').join('');
+}
+function setFrame(v){localStorage.setItem('avatarFrame',v);renderAvatar()}
+function setAvatar(input){
+  const f=input.files&&input.files[0];if(!f)return;
+  if(f.size>400000){alert('Картинка завелика (макс. 400 КБ)');return}
+  const r=new FileReader();
+  r.onload=()=>{localStorage.setItem('avatar',r.result);renderAvatar()};
+  r.readAsDataURL(f);
+}
+function renderAvatar(){
+  const av=localStorage.getItem('avatar'),fr=localStorage.getItem('avatarFrame')||'';
+  const ai=$('avatarImg'),fi=$('frameImg'),em=$('avatarEmoji');
+  if(!ai)return;
+  if(av){ai.src=av;ai.classList.remove('hidden');em.classList.add('hidden')}else{ai.classList.add('hidden');em.classList.remove('hidden')}
+  if(fr&&ITEM_INFO[fr]){fi.src=ITEM_INFO[fr][0];fi.classList.remove('hidden')}else fi.classList.add('hidden');
+}
+async function changeNick(){
+  const n=$('nickInput').value.trim();if(!n)return;
+  if(!sbUser){alert('Спочатку увійди в акаунт');return}
+  const {error}=await sb.from('profiles').update({username:n}).eq('id',sbUser.id);
+  if(error){alert('Такий нік вже зайнятий або сталася помилка');return}
+  sbUser.user_metadata={...(sbUser.user_metadata||{}),username:n};
+  updateAccountUI();$('nickInput').value='';toast('Нік змінено');
+}
+renderAvatar();
+</script></body></html>
