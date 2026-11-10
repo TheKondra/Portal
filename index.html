@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="uk">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Portal — ігри та інструменти</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PORTAL INSTI — games & study hub</title>
 <style>
 :root{--bg:#07130f;--panel:rgba(13,31,25,.82);--panel2:rgba(21,45,37,.8);--text:#edf7f1;--muted:#9bb4a8;--accent:#51d69a;--line:rgba(255,255,255,.1);--shadow:0 18px 60px #0005}
 *{box-sizing:border-box}body{margin:0;color:var(--text);font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;background:radial-gradient(900px 500px at 15% -10%,#174a35 0%,transparent 65%),radial-gradient(800px 500px at 100% 10%,#102e27 0%,transparent 60%),var(--bg);min-height:100vh;transition:.25s}
@@ -31,22 +31,31 @@ body.animbg{background:linear-gradient(-45deg,#0f172a,#312e81,#831843,#065f46)!i
 .avatar{position:relative;width:72px;height:72px;border-radius:50%;background:var(--panel);overflow:hidden;display:grid;place-items:center;font-size:32px;flex:0 0 72px}
 .avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .avatar img.frameImg{object-fit:contain;transform:scale(1.3);mix-blend-mode:screen;z-index:2}
+
+body.theme-graphite{--bg:#111318;--panel:rgba(29,32,39,.9);--panel2:rgba(44,48,58,.86);--text:#edf0f5;--muted:#a7afbd;--accent:#c5ccd8;--line:rgba(255,255,255,.12);background:linear-gradient(145deg,#252a33,#101216 70%)}
+body.theme-ocean{--bg:#061827;--panel:rgba(8,47,73,.88);--panel2:rgba(12,74,110,.78);--text:#e0f2fe;--muted:#8ec8e8;--accent:#38bdf8;--line:rgba(125,211,252,.18);background:radial-gradient(900px 500px at 10% -10%,#075985,transparent 65%),linear-gradient(145deg,#082f49,#061827)}
+body.theme-violet{--bg:#160b2e;--panel:rgba(46,16,101,.82);--panel2:rgba(76,29,149,.72);--text:#f5f3ff;--muted:#c4b5fd;--accent:#a78bfa;--line:rgba(196,181,253,.18);background:radial-gradient(900px 500px at 10% -10%,#5b21b6,transparent 65%),linear-gradient(145deg,#2e1065,#160b2e)}
+body.theme-sunset{--bg:#2b1008;--panel:rgba(67,20,7,.86);--panel2:rgba(124,45,18,.75);--text:#fff7ed;--muted:#fdba74;--accent:#fb923c;--line:rgba(253,186,116,.18);background:radial-gradient(900px 500px at 10% -10%,#9a3412,transparent 65%),linear-gradient(145deg,#431407,#1c0b08)}
+body.theme-rose{--bg:#2a071b;--panel:rgba(80,7,36,.86);--panel2:rgba(131,24,67,.72);--text:#fdf2f8;--muted:#f9a8d4;--accent:#f472b6;--line:rgba(249,168,212,.18);background:radial-gradient(900px 500px at 10% -10%,#9d174d,transparent 65%),linear-gradient(145deg,#500724,#210716)}
+body.theme-mint{--bg:#05251d;--panel:rgba(6,78,59,.86);--panel2:rgba(6,95,70,.76);--text:#ecfdf5;--muted:#a7f3d0;--accent:#6ee7b7;--line:rgba(167,243,208,.18);background:radial-gradient(900px 500px at 10% -10%,#047857,transparent 65%),linear-gradient(145deg,#064e3b,#05251d)}
+.auction-card{background:var(--panel2);border:1px solid var(--line);border-radius:15px;padding:12px;text-align:center;display:flex;flex-direction:column;gap:7px;min-width:0}.auction-card img{height:112px;max-width:100%;object-fit:contain}.auction-card .price{font-weight:900;color:var(--accent);font-size:17px}.auction-card button{width:100%}
+
 </style></head>
 <body><div class="app">
-<header class="top"><div class="brand"><div class="logo">P</div><span>PORTAL <span style="color:var(--accent)">/</span> student hub</span></div><span id="walletBox" class="muted" style="font-weight:800"></span><nav class="nav"><button onclick="showHome()">Головна</button><button onclick="showMarket()">🛒 Маркет</button><button onclick="showFrames()">🖼️ Рамки</button><button onclick="showInv()">🎒 Інвентар</button><button onclick="showSettings()">⚙ Налаштування</button></nav></header>
+<header class="top"><div class="brand"><div class="logo">P</div><span>PORTAL INSTI</span></div><span id="walletBox" class="muted" style="font-weight:800"></span><nav class="nav"><button onclick="showHome()">Головна</button><button onclick="showMarket()">🛒 Маркет</button><button onclick="showAuction()">🔨 Аукціон</button><button onclick="showFrames()">🖼️ Рамки</button><button onclick="showInv()">🎒 Інвентар</button><button onclick="showSettings()">⚙ Налаштування</button></nav></header>
 <main id="home" class="view active"><section class="hero"><div><div class="eyebrow">Твій простір · твій вибір</div><h1>Перерва стала<br>цікавішою.</h1><p>Ігри, корисні посилання та маленькі інструменти — в одному місці. Обирай гру й залишайся на цій сторінці.</p><div style="margin-top:18px"><button class="primary" onclick="openGame('snake')">Пограти зараз ↗</button></div></div><div class="hero-mark">✦</div></section>
 <div class="section-head"><div><div class="eyebrow">Game zone</div><h2>Ігри</h2></div><span class="muted">4 режими · прямо в браузері</span></div>
 <section class="grid">
 <div class="card"><div class="game-icon">🧩</div><span class="tag">Logic</span><h3>Судоку</h3><p>Класична числова головоломка.</p><button onclick="openGame('sudoku')">Грати</button></div>
 <div class="card"><div class="game-icon">🐍</div><span class="tag">Arcade</span><h3>Змійка</h3><p>Збирай їжу, не врізайся в себе.</p><button onclick="openGame('snake')">Грати</button></div>
 <div class="card"><div class="game-icon">♟️</div><span class="tag">Strategy</span><h3>Шахи</h3><p>Локальна партія на одному пристрої.</p><button onclick="openGame('chess')">Грати</button></div>
-<div class="card"><div class="game-icon">🔢</div><span class="tag">Puzzle</span><h3>2048</h3><p>Об'єднуй плитки й дійди до 2048.</p><button onclick="openGame('2048')">Грати</button></div><div class="card"><div class="game-icon">🎁</div><span class="tag">Sim</span><h3>Кейси</h3><p>Відкривай кейси з вигаданими предметами.</p><button onclick="openGame('cases')">Грати</button></div><div class="card"><div class="game-icon">💠</div><span class="tag">Sim</span><h3>Кейс рамок</h3><p>Відкривай кейс з рамками для аватарки.</p><button onclick="openGame('frames')">Грати</button></div>
+<div class="card"><div class="game-icon">🔢</div><span class="tag">Puzzle</span><h3>2048</h3><p>Об'єднуй плитки й дійди до 2048.</p><button onclick="openGame('2048')">Грати</button></div><div class="card"><div class="game-icon">🎁</div><span class="tag">Sim</span><h3>Кейси</h3><p>Відкривай кейси з вигаданими предметами.</p><button onclick="openGame('cases')">Грати</button></div><div class="card"><div class="game-icon">💠</div><span class="tag">Sim</span><h3>Кейс рамок</h3><p>Відкривай кейс з рамками для аватарки.</p><button onclick="openGame('frames')">Грати</button></div><div class="card"><div class="game-icon">⚔️</div><span class="tag">Action</span><h3>Roguelike</h3><p>Action roguelike: fight, dodge, upgrade.</p><button onclick="openGame('roguelike')">Грати</button></div>
 </section>
 <div class="section-head"><div><div class="eyebrow">Quick access</div><h2>Навчання та інструменти</h2></div></div>
 <div id="reminderBanner" style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding:14px 18px;margin-bottom:16px;border-radius:14px;background:linear-gradient(90deg,#f59e0b33,#ef444433);border:1px solid var(--line)"><span>📚 Не забудь зайти в <b>Google Classroom</b> сьогодні, там є завдання!</span><button onclick="dismissReminder()">Ок, зайшов</button></div><section class="tools"><a class="tool" href="https://classroom.google.com/" target="_blank" rel="noopener"><span>🎓</span><span><b>Google Classroom</b><br><small class="muted">Завдання та курси</small></span></a><a class="tool" href="https://drive.google.com/" target="_blank" rel="noopener"><span>📁</span><span><b>Google Drive</b><br><small class="muted">Файли та документи</small></span></a><a class="tool" href="https://slides.google.com/" target="_blank" rel="noopener"><span>📊</span><span><b>Google Slides</b><br><small class="muted">Презентації</small></span></a><a class="tool" href="https://docs.google.com/" target="_blank" rel="noopener"><span>📝</span><span><b>Google Docs</b><br><small class="muted">Документи</small></span></a><button class="tool" onclick="openGame('calc')"><span>🧮</span><span><b>Калькулятор</b><br><small class="muted">Швидкі обчислення</small></span></button></section>
 <div class="section-head"><div><div class="eyebrow">Community</div><h2>Спільнота</h2></div></div><div class="chat-note">💬 Спільний чат, профілі за нікнеймами та таблиця рекордів — наступний етап. Для них потрібен сервер, щоб повідомлення й результати синхронізувалися між усіма учнями.</div>
 </main>
-<section id="market" class="view"><div class="game-shell"><div class="game-top"><div><div class="eyebrow">Market</div><h2>Маркет</h2></div><button onclick="showHome()">← Назад</button></div><div id="marketBody" style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center"></div></div></section><section id="frames" class="view"><div class="game-shell"><div class="game-top"><div><div class="eyebrow">Frames</div><h2>Рамки для аватарки</h2></div><button onclick="showHome()">← Назад</button></div><p class="muted">Ціна в діамантах скоро. Поки що рамки можна отримати з кейса рамок.</p><div id="framesBody" style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center"></div></div></section><section id="inventory" class="view"><div class="game-shell"><div class="game-top"><div><div class="eyebrow">Inventory</div><h2>Інвентар</h2></div><button onclick="showHome()">← Назад</button></div><div id="invBody"></div></div></section><section id="settings">
+<section id="market" class="view"><div class="game-shell"><div class="game-top"><div><div class="eyebrow">Market</div><h2>Маркет</h2></div><button onclick="showHome()">← Назад</button></div><div id="marketBody" style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center"></div></div></section><section id="auction" class="view"><div class="game-shell"><div class="game-top"><div><div class="eyebrow">Community market</div><h2>🔨 Аукціон</h2></div><button onclick="showHome()">← Назад</button></div><p class="muted">Купуй і виставляй предмети інших гравців за внутрішні монети. Оголошення спільні між акаунтами.</p><div id="auctionTabs" class="settings-row" style="margin:12px 0"><button onclick="setAuctionCategory('all')">Усі</button><button onclick="setAuctionCategory('weapon')">Скіни</button><button onclick="setAuctionCategory('glove')">Рукавиці</button><button onclick="setAuctionCategory('frame')">Рамки</button><button onclick="setAuctionCategory('mine')">Мої оголошення</button></div><div class="controls" style="justify-content:flex-start;margin:10px 0"><button class="primary" onclick="openCreateListing()">＋ Виставити предмет</button><button onclick="refreshAuction()">↻ Оновити</button></div><div id="auctionStatus" class="chat-note">Завантаження аукціону…</div><div id="auctionBody" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:12px;margin-top:14px"></div></div></section><section id="frames" class="view"><div class="game-shell"><div class="game-top"><div><div class="eyebrow">Frames</div><h2>Рамки для аватарки</h2></div><button onclick="showHome()">← Назад</button></div><p class="muted">Ціна в діамантах скоро. Поки що рамки можна отримати з кейса рамок.</p><div id="framesBody" style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center"></div></div></section><section id="inventory" class="view"><div class="game-shell"><div class="game-top"><div><div class="eyebrow">Inventory</div><h2>Інвентар</h2></div><button onclick="showHome()">← Назад</button></div><div id="invBody"></div></div></section><section id="settings">
 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><h2 style="margin:0">⚙ Налаштування</h2><button onclick="closeSettings()">✕</button></div>
 <div class="drawer-card"><div class="eyebrow">Акаунт</div>
  <div class="avatar-row"><div class="avatar"><span id="avatarEmoji">🙂</span><img id="avatarImg" alt="" class="hidden"><img id="frameImg" alt="" class="hidden frameImg"></div>
@@ -58,45 +67,50 @@ body.animbg{background:linear-gradient(-45deg,#0f172a,#312e81,#831843,#065f46)!i
  <label class="muted" style="font-size:13px">Рамка з інвентаря</label>
  <select id="frameSelect" class="inp" onchange="setFrame(this.value)"></select>
 </div>
+<div class="drawer-card"><div class="eyebrow">Мова / Language / Idioma</div><select id="languageSelect" class="inp" onchange="setLanguage(this.value)"><option value="uk">Українська</option><option value="es">Español</option><option value="en">English</option></select></div>
 <div class="drawer-card"><div class="eyebrow">Тема</div>
- <div class="settings-row"><button onclick="setTheme('green')">🟢 Emerald</button><button onclick="setTheme('blue')">🟣 Blue</button><button onclick="setTheme('midnight')">⚫ Midnight</button><button onclick="setTheme('red')">🔴 Red</button></div>
+ <div class="settings-row"><button onclick="setTheme('green')">🟢 Emerald</button><button onclick="setTheme('blue')">🟣 Blue</button><button onclick="setTheme('midnight')">⚫ Midnight</button><button onclick="setTheme('red')">🔴 Red</button><button onclick="setTheme('graphite')">⬛ Graphite</button><button onclick="setTheme('ocean')">🌊 Ocean</button><button onclick="setTheme('violet')">🟪 Violet</button><button onclick="setTheme('sunset')">🌅 Sunset</button><button onclick="setTheme('rose')">🌸 Rose</button><button onclick="setTheme('mint')">🍃 Mint</button></div>
  <div class="settings-row"><button onclick="toggleAnim()">🌈 Анімований фон</button></div>
  <div class="settings-row"><input id="wall" class="inp" placeholder="URL картинки фону" style="flex:1"><button onclick="setWallpaper()">Застосувати</button></div>
 </div>
 <div class="drawer-card"><button onclick="showTutorial()">📖 Туторіал</button></div>
-<div id="adminPanel" class="hidden"></div>
-<div class="drawer-card"><button onclick="unlockAdmin()">🔒 Адмін</button>
+<div class="drawer-card"><div class="eyebrow">Адміністрування</div><p class="muted" style="font-size:13px;margin:0">Адмін-панель тимчасово вимкнена. Її буде повернуто після налаштування серверної перевірки ролей.</p>
  <a class="tool" href="https://docs.google.com/forms/d/e/1FAIpQLSfLAqV0lNhqA2Ip-dbfxLgLsZ9hEVDYhj8QICUbBmPsyh7P7A/viewform?usp=publish-editor" target="_blank" rel="noopener"><span>💬</span><span><b>Побажання</b><br><small class="muted">Напиши, що додати</small></span></a>
 </div>
 </section>
 <section id="game" class="view"><div class="game-shell"><div class="game-top"><div><div class="eyebrow">Game window</div><h2 id="gameTitle">Гра</h2></div><button onclick="showHome()">✕ Закрити</button></div><div id="gameContent"></div></div></section>
-<footer class="footer">PORTAL · prototype 0.1 · Зроблено для перерв і продуктивних пауз</footer></div>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<footer class="footer">PORTAL INSTI · v0.19 · Простір для навчання й відпочинку</footer></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js">
+</script>
 <script>
-const $=id=>document.getElementById(id);function show(id){['home','game','inventory','frames','market'].forEach(x=>$(x).classList.toggle('active',x===id))}function showHome(){show('home')}function showSettings(){document.getElementById('settings').classList.add('open');document.getElementById('settingsBackdrop').classList.add('open');renderFrameSelect();renderAvatar()}function closeSettings(){document.getElementById('settings').classList.remove('open');document.getElementById('settingsBackdrop').classList.remove('open')}function showInv(){show('inventory');renderInventory()}
+const $=id=>document.getElementById(id);function show(id){if(id!=='game'){const c=$('gameContent');if(c&&c._cleanup){c._cleanup();c._cleanup=null}}['home','game','inventory','frames','market','auction'].forEach(x=>$(x).classList.toggle('active',x===id))}function showHome(){show('home')}function showSettings(){document.getElementById('settings').classList.add('open');document.getElementById('settingsBackdrop').classList.add('open');renderFrameSelect();renderAvatar();const ls=$('languageSelect');if(ls)ls.value=currentLanguage()}function closeSettings(){document.getElementById('settings').classList.remove('open');document.getElementById('settingsBackdrop').classList.remove('open')}function showInv(){show('inventory');renderInventory()}
 function showMarket(){show('market');renderMarket()}
 function renderMarket(){
- $('marketBody').innerHTML=Object.entries(ITEM_INFO).map(([name,v])=>'<div style="width:150px;text-align:center;background:var(--panel2);border-radius:14px;padding:10px;border-bottom:4px solid '+RAR_COL[v[2]]+'"><img src="'+v[0]+'" style="width:110px;height:90px;object-fit:contain"><div style="font-size:13px;margin:6px 0">'+name+'</div><div class="score">'+(PRICES[name]||'?')+' 🪙</div><button class="primary" style="margin-top:6px" onclick="buyItem(\''+name.replace(/'/g,"\\'")+'\')">Купити</button></div>').join('');
+ $('marketBody').innerHTML=Object.entries(ITEM_INFO).map(([name,v])=>'<div style="width:150px;text-align:center;background:var(--panel2);border-radius:14px;padding:10px;border-bottom:4px solid '+RAR_COL[v[2]]+'"><img src="'+v[0]+'" style="width:110px;height:90px;object-fit:contain"><div style="font-size:13px;margin:6px 0">'+name+'</div><div class="score">'+(getItemPrice(name)??'—')+' 🪙</div><button class="primary" style="margin-top:6px" onclick="buyItem(\''+name.replace(/'/g,"\\'")+'\')">Купити</button></div>').join('');
 }
 function buyItem(name){
- const price=PRICES[name];
+ const item=ITEM_INFO[name];
+ const price=getItemPrice(name);
+ if(!item||!Number.isFinite(price)||price<=0){alert('Ціна цього предмета ще не налаштована.');return}
  if(getCoins()<price){alert('Недостатньо монет');return}
  localStorage.setItem('caseCoins',String(getCoins()-price));
  const inv=JSON.parse(localStorage.getItem('inv')||'[]');
- inv.push({name,ri:ITEM_INFO[name][2]});
+ inv.push({name,ri:item[2]});
  localStorage.setItem('inv',JSON.stringify(inv));
  refreshWallet();toast('Куплено: '+name);
 }function showFrames(){show('frames');$('framesBody').innerHTML=FRAME_POOL.map(f=>'<div style="width:150px;text-align:center;background:var(--panel2);border-radius:14px;padding:10px"><img src="'+f.img+'" style="width:120px;height:120px;object-fit:contain"><div style="font-size:13px;margin-top:6px">'+f.name+'</div></div>').join('')}
-function setTheme(t){document.body.classList.remove('theme-blue','theme-midnight','theme-red','theme-wallpaper');if(t==='red')document.body.classList.add('theme-red');if(t==='blue')document.body.classList.add('theme-blue');if(t==='midnight')document.body.classList.add('theme-midnight');localStorage.setItem('portalTheme',t)}function setWallpaper(){let u=$('wall').value.trim();if(!u)return;document.body.classList.remove('theme-blue','theme-midnight');document.body.style.background=`linear-gradient(#07130fcc,#07130fdd),url("${u.replaceAll('"','')}") center/cover fixed`;localStorage.setItem('portalWallpaper',u)}
-const saved=localStorage.getItem('portalTheme');if(saved)setTheme(saved);const wp=localStorage.getItem('portalWallpaper');if(wp){$('wall').value=wp;setWallpaper()}
-function openGame(name){let old=$('gameContent');if(old._cleanup)old._cleanup();show('game');let c=$('gameContent');c.innerHTML='';const titles={snake:'Змійка',sudoku:'Судоку',chess:'Шахи','2048':'2048',calc:'Калькулятор',cases:'Кейси',frames:'Кейс рамок'};$('gameTitle').textContent=titles[name];({snake:snakeGame,sudoku:sudokuGame,chess:chessGame,'2048':game2048,calc:calculator,cases:caseSim,frames:c=>caseSim(c,FRAME_POOL)})[name](c)}
+function setTheme(t){document.body.classList.remove('theme-blue','theme-midnight','theme-red','theme-wallpaper','theme-graphite','theme-ocean','theme-violet','theme-sunset','theme-rose','theme-mint');document.body.style.removeProperty('background');document.body.style.removeProperty('background-image');document.body.style.removeProperty('background-position');document.body.style.removeProperty('background-size');document.body.style.removeProperty('background-attachment');localStorage.removeItem('portalWallpaper');if($('wall'))$('wall').value='';if(t==='red')document.body.classList.add('theme-red');if(['graphite','ocean','violet','sunset','rose','mint'].includes(t))document.body.classList.add('theme-'+t);if(t==='blue')document.body.classList.add('theme-blue');if(t==='midnight')document.body.classList.add('theme-midnight');localStorage.setItem('portalTheme',t)}
+function setWallpaper(){const u=$('wall').value.trim();if(!u)return;let parsed;try{parsed=new URL(u)}catch{alert('Введи коректне посилання на зображення.');return}if(!['http:','https:'].includes(parsed.protocol)){alert('Дозволені лише HTTP/HTTPS-посилання.');return}document.body.classList.remove('theme-blue','theme-midnight','theme-red');const safe=u.replace(/[\"\\\n\r]/g,ch=>'\\'+ch);document.body.style.backgroundImage='linear-gradient(#07130fcc,#07130fdd),url("'+safe+'")';document.body.style.backgroundPosition='center';document.body.style.backgroundSize='cover';document.body.style.backgroundAttachment='fixed';localStorage.setItem('portalWallpaper',u);localStorage.setItem('portalTheme','wallpaper')}
+const saved=localStorage.getItem('portalTheme');if(saved&&saved!=='wallpaper')setTheme(saved);const wp=localStorage.getItem('portalWallpaper');if(wp){$('wall').value=wp;setWallpaper()}
+function openGame(name){let old=$('gameContent');if(old._cleanup)old._cleanup();show('game');let c=$('gameContent');c.innerHTML='';const titles={roguelike:'Roguelike',snake:'Змійка',sudoku:'Судоку',chess:'Шахи','2048':'2048',calc:'Калькулятор',cases:'Кейси',frames:'Кейс рамок'};$('gameTitle').textContent=titles[name];({roguelike:rgMount,snake:snakeGame,sudoku:sudokuGame,chess:chessGame,'2048':game2048,calc:calculator,cases:caseSim,frames:c=>caseSim(c,FRAME_POOL)})[name](c)}
 function snakeGame(c){c.innerHTML='<div style="text-align:center"><div class="score">Рахунок: <span id="ss">0</span></div><canvas id="snakeCanvas" width="400" height="400"></canvas><div class="controls"><button id="snakeStart" class="primary">Старт / пауза</button><button id="snakeReset">Заново</button></div><p class="muted">Керування: WASD або стрілки. На телефоні можна свайпати по полю.</p></div>';let cv=$('snakeCanvas'),ctx=cv.getContext('2d'),timer=null,dir={x:1,y:0},next={x:1,y:0},snake,food,score,running=false;function reset(){snake=[{x:8,y:10},{x:7,y:10},{x:6,y:10}];food={x:14,y:10};score=0;dir={x:1,y:0};next={...dir};$('ss').textContent=0;draw()}function draw(){ctx.fillStyle='#09110e';ctx.fillRect(0,0,400,400);ctx.fillStyle='#51d69a';snake.forEach(p=>ctx.fillRect(p.x*20+2,p.y*20+2,16,16));ctx.fillStyle='#f5bd55';ctx.beginPath();ctx.arc(food.x*20+10,food.y*20+10,8,0,7);ctx.fill()}function tick(){dir=next;let h={x:snake[0].x+dir.x,y:snake[0].y+dir.y};if(h.x<0||h.y<0||h.x>=20||h.y>=20||snake.some(p=>p.x===h.x&&p.y===h.y)){stop();if(score)addCoins(score*2);alert('Гра завершена! Рахунок: '+score);return}snake.unshift(h);if(h.x===food.x&&h.y===food.y){score++;$('ss').textContent=score;do{food={x:Math.floor(Math.random()*20),y:Math.floor(Math.random()*20)}}while(snake.some(p=>p.x===food.x&&p.y===food.y))}else snake.pop();draw()}function stop(){running=false;clearInterval(timer);timer=null}function toggle(){if(running){stop();return}running=true;timer=setInterval(tick,115)}$('snakeStart').onclick=toggle;$('snakeReset').onclick=()=>{stop();reset()};const key=e=>{let m={ArrowUp:[0,-1],w:[0,-1],ArrowDown:[0,1],s:[0,1],ArrowLeft:[-1,0],a:[-1,0],ArrowRight:[1,0],d:[1,0]}[e.key];if(m&&!(m[0]===-dir.x&&m[1]===-dir.y)){next={x:m[0],y:m[1]};e.preventDefault()}};window.addEventListener('keydown',key);c._cleanup=()=>{stop();window.removeEventListener('keydown',key)};let sx=0,sy=0;cv.ontouchstart=e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY};cv.ontouchend=e=>{let dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;if(Math.abs(dx)>Math.abs(dy))next={x:Math.sign(dx),y:0};else next={x:0,y:Math.sign(dy)}};reset()}
 function game2048(c){
 c.innerHTML='<div style="text-align:center"><div class="score">Рахунок: <span id="s2048">0</span></div><div id="b2048" class="b2048"></div><div class="controls"><button class="primary" id="r2048">Нова гра</button></div><p class="muted">Керування: стрілки або WASD. На телефоні — свайпи.</p></div>';
 const B=$('b2048'), sc=$('s2048');
 for(let i=0;i<16;i++){const e=document.createElement('div');e.className='cell2';e.style.left=`calc(${(i%4)*25}% + 4px)`;e.style.top=`calc(${Math.floor(i/4)*25}% + 4px)`;B.append(e)}
 const COL={2:'#2b805e',4:'#2f8a66',8:'#2b7a8c',16:'#287b91',32:'#3d6aa8',64:'#6156a9',128:'#8a4fa0',256:'#a16b36',512:'#b5612a',1024:'#c28a25',2048:'#d4a017'};
-let g,score=0,busy=false;
+let g,score=0,busy=false,active=true,pendingTimers=new Set();
+function later(fn,ms){const id=setTimeout(()=>{pendingTimers.delete(id);if(active)fn()},ms);pendingTimers.add(id);return id}
 const pos=t=>{t.el.style.left=`calc(${t.c*25}% + 4px)`;t.el.style.top=`calc(${t.r*25}% + 4px)`};
 function mk(t,cls){t.el=document.createElement('div');t.el.className='tile2 '+cls;t.el.textContent=t.v;t.el.style.background=COL[t.v]||'#222';t.el.style.color=t.v>4?'#fff':'#eee';t.el.style.width='calc(25% - 8px)';t.el.style.height='calc(25% - 8px)';pos(t);B.append(t.el)}
 function spawn(){const e=[];for(let r=0;r<4;r++)for(let k=0;k<4;k++)if(!g[r][k])e.push([r,k]);if(!e.length)return;const [r,k]=e[Math.floor(Math.random()*e.length)];const t={v:Math.random()<.9?2:4,r,c:k};g[r][k]=t;mk(t,'new')}
@@ -128,42 +142,35 @@ function move(d){
  if(!moved)return;
  busy=true;g=next;sc.textContent=score;
  spawn();
- setTimeout(()=>{
-   gone.forEach(({a,b,m})=>{a.el.remove();b.el.remove();mk(m,'merged')});
+ later(()=>{
+   gone.forEach(({a,b,m})=>{if(a.el&&a.el.isConnected)a.el.remove();if(b.el&&b.el.isConnected)b.el.remove();mk(m,'merged')});
    busy=false;
-   if(!canMove())setTimeout(()=>{if(score>=50)addCoins(Math.floor(score/50));alert('Ходи закінчилися. Рахунок: '+score)},50);
+   if(!canMove())later(()=>{if(score>=50)addCoins(Math.floor(score/50));alert('Ходи закінчилися. Рахунок: '+score)},50);
  },160);
 }
 const key=e=>{const d={ArrowLeft:'left',a:'left',ArrowRight:'right',d:'right',ArrowUp:'up',w:'up',ArrowDown:'down',s:'down'}[e.key];if(d){e.preventDefault();move(d)}};
-window.addEventListener('keydown',key);c._cleanup=()=>window.removeEventListener('keydown',key);
+window.addEventListener('keydown',key);c._cleanup=()=>{active=false;window.removeEventListener('keydown',key);pendingTimers.forEach(clearTimeout);pendingTimers.clear()};
 $('r2048').onclick=reset;
 let sx=0,sy=0;B.ontouchstart=e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY};
 B.ontouchend=e=>{const dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;if(Math.max(Math.abs(dx),Math.abs(dy))>20)move(Math.abs(dx)>Math.abs(dy)?(dx>0?'right':'left'):(dy>0?'down':'up'))};
 reset();
 }
-function sudokuGame(c){let paid=false;const puzzle=['530070000','600195000','098000060','800060003','400803001','700020006','060000280','000419005','000080079'];const solution=['534678912','672195348','198342567','859761423','426853791','713924856','961537284','287419635','345286179'];c.innerHTML='<div style="display:grid;justify-items:center;gap:12px"><div class="sudoku" id="sudokuBoard"></div><div class="controls"><button class="primary" id="checkSudoku">Перевірити</button><button id="resetSudoku">Очистити введене</button></div><p class="muted">Заповни порожні клітинки цифрами від 1 до 9.</p><div id="sudokuMsg" class="score"></div></div>';let b=$('sudokuBoard');puzzle.forEach((row,r)=>[...row].forEach((v,col)=>{let x=document.createElement('input');x.inputMode='numeric';x.maxLength=1;x.dataset.r=r;x.dataset.c=col;if(v!=='0'){x.value=v;x.disabled=true;x.className='given'}else x.oninput=()=>{x.value=x.value.replace(/[^1-9]/g,'').slice(0,1)};b.append(x)}));$('checkSudoku').onclick=()=>{let cells=[...b.children],ok=true,filled=true;cells.forEach(x=>{let v=x.value||'0',r=+x.dataset.r,col=+x.dataset.c;if(v==='0')filled=false;if(v!==solution[r][col])ok=false});if(filled&&ok&&!paid){paid=true;addCoins(50)}$('sudokuMsg').textContent=!filled?'Ще є порожні клітинки.':ok?'Чудово! Судоку розв’язано 🎉':'Поки є помилки — перевір цифри.'};$('resetSudoku').onclick=()=>{[...b.children].forEach(x=>{if(!x.disabled)x.value=''});$('sudokuMsg').textContent=''}}
+function sudokuGame(c){let paid=localStorage.getItem('sudokuRewardDay')===new Date().toISOString().slice(0,10);const puzzle=['530070000','600195000','098000060','800060003','400803001','700020006','060000280','000419005','000080079'];const solution=['534678912','672195348','198342567','859761423','426853791','713924856','961537284','287419635','345286179'];c.innerHTML='<div style="display:grid;justify-items:center;gap:12px"><div class="sudoku" id="sudokuBoard"></div><div class="controls"><button class="primary" id="checkSudoku">Перевірити</button><button id="resetSudoku">Очистити введене</button></div><p class="muted">Заповни порожні клітинки цифрами від 1 до 9.</p><div id="sudokuMsg" class="score"></div></div>';let b=$('sudokuBoard');puzzle.forEach((row,r)=>[...row].forEach((v,col)=>{let x=document.createElement('input');x.inputMode='numeric';x.maxLength=1;x.dataset.r=r;x.dataset.c=col;if(v!=='0'){x.value=v;x.disabled=true;x.className='given'}else x.oninput=()=>{x.value=x.value.replace(/[^1-9]/g,'').slice(0,1)};b.append(x)}));$('checkSudoku').onclick=()=>{let cells=[...b.children],ok=true,filled=true;cells.forEach(x=>{let v=x.value||'0',r=+x.dataset.r,col=+x.dataset.c;if(v==='0')filled=false;if(v!==solution[r][col])ok=false});if(filled&&ok&&!paid){paid=true;localStorage.setItem('sudokuRewardDay',new Date().toISOString().slice(0,10));addCoins(50)}$('sudokuMsg').textContent=!filled?'Ще є порожні клітинки.':ok?'Чудово! Судоку розв’язано 🎉':'Поки є помилки — перевір цифри.'};$('resetSudoku').onclick=()=>{[...b.children].forEach(x=>{if(!x.disabled)x.value=''});$('sudokuMsg').textContent=''}}
 function chessGame(c){let board='rnbqkbnrpppppppp................................PPPPPPPPRNBQKBNR'.split(''),turn='w',sel=-1;const glyph={r:'♜',n:'♞',b:'♝',q:'♛',k:'♚',p:'♟',R:'♖',N:'♘',B:'♗',Q:'♕',K:'♔',P:'♙'};c.innerHTML='<div style="display:grid;justify-items:center;gap:12px"><div id="chessStatus" class="score">Хід білих</div><div class="chess" id="chessBoard"></div><div class="controls"><button id="chessReset">Нова партія</button></div><p class="muted">Демо-режим: локальна гра на одному пристрої. Підтримуються базові ходи фігур; рокіровка, взяття на проході та повна перевірка шаху ще не реалізовані.</p></div>';function side(p){return !p?'-':p===p.toUpperCase()?'w':'b'}function legal(from,to){let p=board[from],q=board[to],r=Math.floor(from/8),f=from%8,R=Math.floor(to/8),F=to%8,dr=R-r,df=F-f;if(!p||side(p)!==turn||side(q)===turn)return false;let t=p.toLowerCase(),path=(sr,sf)=>{let y=r+sr,x=f+sf;while(y!==R||x!==F){if(board[y*8+x])return false;y+=sr;x+=sf}return true};if(t==='p'){let d=turn==='w'?-1:1,start=turn==='w'?6:1;if(df===0&&!q&&(dr===d||r===start&&dr===2*d&&!board[(r+d)*8+f]))return true;if(Math.abs(df)===1&&dr===d&&q)return true;return false}if(t==='n')return Math.abs(dr)*Math.abs(df)===2;if(t==='k')return Math.max(Math.abs(dr),Math.abs(df))===1;if(t==='r')return (dr===0||df===0)&&path(Math.sign(dr),Math.sign(df));if(t==='b')return Math.abs(dr)===Math.abs(df)&&path(Math.sign(dr),Math.sign(df));if(t==='q')return (dr===0||df===0||Math.abs(dr)===Math.abs(df))&&path(Math.sign(dr),Math.sign(df));return false}function draw(){let el=$('chessBoard');el.innerHTML='';board.forEach((p,i)=>{let x=document.createElement('button');x.className='square '+((Math.floor(i/8)+i%8)%2?'dark':'light')+(sel===i?' selected':'');x.textContent=glyph[p]||'';x.onclick=()=>click(i);el.append(x)})}function click(i){if(sel<0){if(board[i]&&side(board[i])===turn)sel=i}else if(i===sel)sel=-1;else if(legal(sel,i)){let p=board[sel];board[i]=p;board[sel]='.';if(p==='P'&&Math.floor(i/8)===0)board[i]='Q';if(p==='p'&&Math.floor(i/8)===7)board[i]='q';turn=turn==='w'?'b':'w';$('chessStatus').textContent=turn==='w'?'Хід білих':'Хід чорних';sel=-1}else if(board[i]&&side(board[i])===turn)sel=i;draw()}function reset(){board='rnbqkbnrpppppppp................................PPPPPPPPRNBQKBNR'.split('');turn='w';sel=-1;$('chessStatus').textContent='Хід білих';draw()}$('chessReset').onclick=reset;draw()}
 function calculator(c){c.innerHTML='<div style="max-width:340px;margin:auto"><input id="calcDisplay" readonly value="0" style="width:100%;padding:18px;font-size:26px;text-align:right;border-radius:12px;border:1px solid var(--line);background:var(--panel2);color:var(--text);margin-bottom:10px"><div class="grid" style="grid-template-columns:repeat(4,1fr);gap:7px">'+['7','8','9','/','4','5','6','*','1','2','3','-','0','.','=','+','C'].map(x=>`<button onclick="calcKey('${x}')">${x}</button>`).join('')+'</div></div>';window.calcKey=x=>{let d=$('calcDisplay');if(x==='C')d.value='0';else if(x==='='){try{if(!/^[0-9+*/.() -]+$/.test(d.value))throw 0;d.value=String(Function('return ('+d.value+')')())}catch{d.value='Помилка'}}else d.value=d.value==='0'?x:d.value+x}}
 
 /* ===== анімований фон ===== */
 function toggleAnim(){const on=!document.body.classList.contains('animbg');document.body.classList.toggle('animbg',on);localStorage.setItem('animbg',on?'1':'0')}
 
-/* ===== адмін: перейменування кнопок ===== */
-const ADMIN_PASS='change-me-123';
-const NAME_TARGETS={home:'.nav button:nth-child(1)',inv:'.nav button:nth-child(2)',settings:'.nav button:nth-child(3)',snake:'.card button[onclick*="openGame(\'snake\')"]',sudoku:'.card button[onclick*="openGame(\'sudoku\')"]',chess:'.card button[onclick*="openGame(\'chess\')"]','2048':'.card button[onclick*="openGame(\'2048\')"]',cases:'.card button[onclick*="openGame(\'cases\')"]'};
-function applyNames(){const n=JSON.parse(localStorage.getItem('btnNames')||'{}');for(const k in NAME_TARGETS){const el=document.querySelector(NAME_TARGETS[k]);if(el&&n[k])el.textContent=n[k]}}
-function unlockAdmin(){if(localStorage.getItem('isAdmin')==='1'){renderAdmin();return}if(prompt('Пароль адміна:')===ADMIN_PASS){localStorage.setItem('isAdmin','1');renderAdmin()}else alert('Невірний пароль')}
-function logoutAdmin(){localStorage.removeItem('isAdmin');renderAdmin()}
-function renderAdmin(){const box=$('adminPanel');if(!box)return;if(localStorage.getItem('isAdmin')!=='1'){box.classList.add('hidden');box.innerHTML='';return}box.classList.remove('hidden');const n=JSON.parse(localStorage.getItem('btnNames')||'{}');box.innerHTML='<h3>Адмін: назви кнопок</h3>'+Object.keys(NAME_TARGETS).map(k=>{const el=document.querySelector(NAME_TARGETS[k]);const val=(n[k]||(el?el.textContent:'')).replace(/"/g,'&quot;');return '<div class="settings-row" style="margin:6px 0"><span class="muted" style="min-width:90px">'+k+'</span><input data-k="'+k+'" value="'+val+'" style="flex:1;padding:8px;border-radius:8px;border:1px solid var(--line);background:var(--panel2);color:var(--text)"></div>'}).join('')+'<div class="settings-row"><button class="primary" onclick="saveNames()">Зберегти</button><button onclick="resetNames()">Скинути назви</button><button onclick="logoutAdmin()">Вийти з адмін</button></div>'}
-function saveNames(){const n={};document.querySelectorAll('#adminPanel input').forEach(i=>{if(i.value.trim())n[i.dataset.k]=i.value.trim()});localStorage.setItem('btnNames',JSON.stringify(n));applyNames();renderAdmin();alert('Збережено')}
-function resetNames(){localStorage.removeItem('btnNames');location.reload()}
+/* ===== адміністрування ===== */
+// Адмін-функції вимкнені у фронтенді: локальний пароль і localStorage не є захистом.
 
 /* ===== симулятор кейсів (вигадані предмети) ===== */
 function caseSim(c,pool){
 const RAR=[['Звичайний','#b0b8c4',60,10],['Рідкісний','#4b8bf5',25,40],['Епічний','#a855f7',10,120],['Легендарний','#eab308',4,400],['Міфічний','#ef4444',1,1500]];
 const ITEMS=(pool||Object.entries(ITEM_INFO).filter(([n,v])=>v[1]!=='frame').map(([name,v])=>({name,img:v[0],ri:v[2]})));
 const ITEM_W=110, WIN_IDX=32, CASE_COST=100;
-let coins=getCoins(), inv=JSON.parse(localStorage.getItem('inv')||'[]'), spinning=false;
+let coins=getCoins(), inv=JSON.parse(localStorage.getItem('inv')||'[]'), spinning=false, caseTimer=null, active=true;
 c.innerHTML='<div style="text-align:center"><div class="score">Монети: <span id="cCoins"></span></div>'+
 '<div id="cStripWrap" style="overflow:hidden;position:relative;width:min(92vw,520px);margin:14px auto;border:2px solid var(--line);border-radius:12px;background:var(--panel2)">'+
 '<div style="position:absolute;left:50%;top:0;bottom:0;width:3px;background:#facc15;z-index:2;transform:translateX(-50%)"></div>'+
@@ -173,16 +180,17 @@ c.innerHTML='<div style="text-align:center"><div class="score">Монети: <sp
 '<h3 style="margin-top:18px">Інвентар</h3><div id="cInv" class="muted" style="font-size:13px"></div>'+
 '<p class="muted">Віртуальні монети і вигадані предмети, нічого справжнього.</p></div>';
 const VAL=[10,30,80,200,1000];
-function tile(it){return '<div style="flex:0 0 '+ITEM_W+'px;width:'+ITEM_W+'px;height:118px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:12px;border-bottom:4px solid '+RAR[it.ri][1]+';background:var(--panel);box-sizing:border-box;text-align:center;padding:4px"><img src="'+it.img+'" style="height:60px;max-width:100%;object-fit:contain"><div>'+it.name+'</div><div style="color:#facc15;font-size:11px">'+(PRICES[it.name]||'')+' 🪙</div></div>'}
-function rnd(){return ITEMS[Math.floor(Math.random()*ITEMS.length)]}
-function pick(){const x=Math.random()*100;let acc=0,ri=0;for(let i=0;i<RAR.length;i++){acc+=RAR[i][2];if(x<acc){ri=i;break}}const pool=ITEMS.filter(i=>i.ri===ri);return pool[Math.floor(Math.random()*pool.length)]}
+function tile(it){return '<div style="flex:0 0 '+ITEM_W+'px;width:'+ITEM_W+'px;height:118px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:12px;border-bottom:4px solid '+RAR[it.ri][1]+';background:var(--panel);box-sizing:border-box;text-align:center;padding:4px"><img src="'+it.img+'" style="height:60px;max-width:100%;object-fit:contain"><div>'+it.name+'</div><div style="color:#facc15;font-size:11px">'+(getItemPrice(it.name)??'')+' 🪙</div></div>'}
+function rnd(){return ITEMS.length?ITEMS[Math.floor(Math.random()*ITEMS.length)]:null}
+function pick(){if(!ITEMS.length)return null;const x=Math.random()*100;let acc=0,ri=0;for(let i=0;i<RAR.length;i++){acc+=RAR[i][2];if(x<acc){ri=i;break}}const pool=ITEMS.filter(i=>i.ri===ri);return pool.length?pool[Math.floor(Math.random()*pool.length)]:rnd()}
 function setCoins(v){coins=v;localStorage.setItem('caseCoins',String(v));$('cCoins').textContent=coins;refreshWallet()}
 function renderInv(){$('cInv').textContent=inv.length?inv.map(i=>i.name).join(', '):'Порожньо'}
 function openCase(){
- if(spinning)return;
+ if(!active||spinning)return;
  if(coins<CASE_COST){$('cResult').textContent='Недостатньо монет';return}
+ const win=pick();if(!win){$('cResult').textContent='У цьому кейсі поки немає предметів.';return}
  spinning=true;setCoins(coins-CASE_COST);$('cResult').textContent='';
- const win=pick();const strip=[];
+ const strip=[];
  for(let i=0;i<WIN_IDX+15;i++)strip.push(i===WIN_IDX?win:rnd());
  const s=$('cStrip');s.style.transition='none';s.style.transform='translateX(0)';s.innerHTML=strip.map(tile).join('');
  const wrapW=$('cStripWrap').clientWidth;
@@ -190,24 +198,30 @@ function openCase(){
  void s.offsetWidth;
  s.style.transition='transform 4s cubic-bezier(.12,.7,.1,1)';
  s.style.transform='translateX('+(-target)+'px)';
- setTimeout(()=>{spinning=false;inv.push(win);localStorage.setItem('inv',JSON.stringify(inv));$('cResult').textContent='Випало: '+win.name+' ('+RAR[win.ri][0]+')';$('cResult').style.color=RAR[win.ri][1];renderInv()},4100);
+ caseTimer=setTimeout(()=>{caseTimer=null;if(!active||!$('cResult'))return;spinning=false;inv.push(win);localStorage.setItem('inv',JSON.stringify(inv));$('cResult').textContent='Випало: '+win.name+' ('+RAR[win.ri][0]+')';$('cResult').style.color=RAR[win.ri][1];renderInv()},4100);
 }
 function sellAll(){if(spinning)return;const sum=inv.reduce((a,i)=>a+VAL[i.ri],0);setCoins(coins+sum);$('cResult').textContent=sum?'Продано на '+sum+' монет':'Інвентар порожній';$('cResult').style.color='';inv=[];localStorage.setItem('inv','[]');renderInv()}
-$('cOpen').onclick=openCase;$('cSellAll').onclick=sellAll;
+$('cOpen').onclick=openCase;$('cSellAll').onclick=sellAll;c._cleanup=()=>{active=false;if(caseTimer)clearTimeout(caseTimer);caseTimer=null;if(spinning){coins+=CASE_COST;localStorage.setItem('caseCoins',String(coins));refreshWallet()}spinning=false};
 const init=[];for(let i=0;i<12;i++)init.push(rnd());$('cStrip').innerHTML=init.map(tile).join('');
 setCoins(coins);renderInv();
 }
 
 /* старт */
 document.body.classList.toggle('animbg',localStorage.getItem('animbg')==='1');
-applyNames();
-renderAdmin();
 
 /* ===== інформація про предмети ===== */
 const ITEM_INFO={'Void Karambit':['skins/skin01.png','weapon',4],'Neon Butterfly':['skins/skin02.png','weapon',4],'Golden Bayonet':['skins/skin03.png','weapon',4],'Cobalt Fang':['skins/skin04.png','weapon',4],'Ember Daggers':['skins/skin05.png','weapon',4],'Royal Deagle':['skins/skin06.png','weapon',0],'Silent Specter':['skins/skin07.png','weapon',0],'Dark Ornate':['skins/skin08.png','weapon',0],'Purple Reaper':['skins/skin09.png','weapon',0],'Plasma Five-Seven':['skins/skin10.png','weapon',0],'Crimson AK':['skins/skin11.png','weapon',2],'Neon Storm M4':['skins/skin12.png','weapon',2],'Golden Pulse':['skins/skin13.png','weapon',2],'Void AWP':['skins/skin14.png','weapon',2],'Ember FAMAS':['skins/skin15.png','weapon',2],'Tiger MAC-10':['skins/skin16.png','weapon',1],'Frost MP9':['skins/skin17.png','weapon',1],'Brass Vector':['skins/skin18.png','weapon',1],'Nebula P90':['skins/skin19.png','weapon',1],'Inferno Shotgun':['skins/skin20.png','weapon',1],'Ice Breaker':['skins/skin21.png','weapon',3],'Phantom Gloves':['skins/skin22.png','glove',3]};
 Object.assign(ITEM_INFO,{'Неонова фіолетова':['skins/frame01.png','frame',0],'Золота з шипами':['skins/frame02.png','frame',0],'Срібляста мінімалістична':['skins/frame03.png','frame',0],'Дерев’яна з листям':['skins/frame04.png','frame',0],'Кристальна блакитна':['skins/frame05.png','frame',0],'Зоряна синя':['skins/frame06.png','frame',0],'Кіберпанк фіолетова':['skins/frame07.png','frame',0],'Квіткова рожева':['skins/frame08.png','frame',0],'Класична золота':['skins/frame09.png','frame',1],'Райдужна голографічна':['skins/frame10.png','frame',1],'Шипаста фіолетово-сіра':['skins/frame11.png','frame',1],'Ніжна рожева з перлами':['skins/frame12.png','frame',1],'Вогняна':['skins/frame13.png','frame',1],'Крижана блакитна':['skins/frame14.png','frame',1],'Космічна фіолетова':['skins/frame15.png','frame',2],'Зелена з лозою':['skins/frame16.png','frame',2],'Золота з рунами':['skins/frame17.png','frame',2],'Неонова бірюзова':['skins/frame18.png','frame',2],'Перлова біла':['skins/frame19.png','frame',3],'Червона з шипами':['skins/frame20.png','frame',4]});
 const FRAME_POOL=Object.entries(ITEM_INFO).filter(([n,v])=>v[1]==='frame').map(([name,v])=>({name,img:v[0],ri:v[2]}));
 const PRICES={"VoidKarambit":4850,"NeonButterfly":5420,"GoldenBayonet":3780,"CobaltFang":2650,"EmberDaggers":2310,"RoyalDeagle":1680,"SilentSpecter":1120,"DarkOrnate":980,"PurpleReaper":1240,"PlasmaFive-Seven":790,"CrimsonAK":3560,"NeonStormM4":3120,"GoldenPulse":2450,"VoidAWP":6750,"EmberFAMAS":1480,"TigerMAC-10":860,"FrostMP9":740,"BrassVector":970,"NebulaP90":1890,"InfernoShotgun":1150,"IceBreaker":1060,"PhantomGloves":4280,"Неоновафіолетова":450,"Золотазшипами":980,"Сріблястамінімалістична":280,"Дерев’яназлистям":520,"Кристальнаблакитна":750,"Зорянасиня":610,"Кіберпанкфіолетова":1150,"Квітковарожева":480,"Класичназолота":690,"Райдужнаголографічна":1350,"Шипастафіолетово-сіра":870,"Ніжнарожевазперлами":640,"Вогняна":1250,"Крижанаблакитна":920,"Космічнафіолетова":1080,"Зеленазлозою":490,"Золотазрунами":1190,"Неоновабірюзова":730,"Перловабіла":810,"Червоназшипами":990};
+// У старому каталозі частина ключів цін була записана без пробілів.
+// Шукаємо спочатку точну назву, потім нормалізовану — без пробілів.
+function getItemPrice(name){
+ if(Object.prototype.hasOwnProperty.call(PRICES,name))return Number(PRICES[name]);
+ const compact=String(name).replace(/\s+/g,'');
+ if(Object.prototype.hasOwnProperty.call(PRICES,compact))return Number(PRICES[compact]);
+ return null;
+}
 const RAR_COL=['#b0b8c4','#4b8bf5','#a855f7','#eab308','#ef4444'];
 function renderInventory(){
  const inv=JSON.parse(localStorage.getItem('inv')||'[]');
@@ -219,6 +233,86 @@ function renderInventory(){
   html+=list.length?'<div style="display:flex;flex-wrap:wrap;gap:10px">'+list.map(i=>'<div style="width:110px;height:100px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--panel2);border-bottom:4px solid '+RAR_COL[i.ri]+';border-radius:12px;font-size:12px;text-align:center;padding:4px"><img src="'+ITEM_INFO[i.name][0]+'" style="height:56px;max-width:100%;object-fit:contain">'+i.name+'</div>').join('')+'</div>':'<p class="muted">Поки порожньо</p>';
  }
  $('invBody').innerHTML=html;
+}
+
+/* ===== Аукціон: спільні оголошення через Supabase RPC ===== */
+let auctionCategory='all';
+function showAuction(){show('auction');refreshAuction()}
+function setAuctionCategory(v){auctionCategory=v;refreshAuction()}
+function auctionCategoryFor(name){return ITEM_INFO[name]?.[1]||'other'}
+function auctionMessage(msg){const el=$('auctionStatus');if(el)el.textContent=msg}
+async function refreshAuction(){
+ const body=$('auctionBody');if(!body)return;body.innerHTML='';
+ if(!sb){auctionMessage('Supabase SDK недоступний. Перевір підключення.');return}
+ if(!sbUser){auctionMessage('Для спільного аукціону потрібно увійти в акаунт. Натисни «Акаунт» у налаштуваннях.');return}
+ auctionMessage('Завантаження оголошень…');
+ let q=sb.from('auction_listings').select('id,seller_id,seller_name,item_name,item_ri,price,status,created_at').eq('status','active').order('created_at',{ascending:false}).limit(100);
+ if(auctionCategory==='mine')q=q.eq('seller_id',sbUser.id);
+ const {data,error}=await q;
+ if(error){auctionMessage('Аукціон ще не налаштований у Supabase. Спочатку виконай файл SUPABASE_AUCTION_SETUP.sql з архіву. Деталі: '+error.message);return}
+ let rows=data||[];
+ if(['weapon','glove','frame'].includes(auctionCategory))rows=rows.filter(r=>auctionCategoryFor(r.item_name)===auctionCategory);
+ if(!rows.length){auctionMessage(auctionCategory==='mine'?'У тебе поки немає активних оголошень.':'Поки немає оголошень. Стань першим продавцем!');return}
+ auctionMessage('Активних оголошень: '+rows.length+'. Ціни в монетах 🪙');
+ body.innerHTML=rows.map(r=>{
+   const meta=ITEM_INFO[r.item_name];const img=meta?meta[0]:'';const mine=r.seller_id===sbUser.id;
+   return '<article class="auction-card">'+(img?'<img src="'+img+'" alt="">':'<div style="height:112px;display:grid;place-items:center">🎁</div>')+'<b>'+escapeHTML(r.item_name)+'</b><span class="muted" style="font-size:12px">Продавець: '+escapeHTML(r.seller_name||'Student')+'</span><div class="price">'+Number(r.price).toLocaleString()+' 🪙</div>'+(mine?'<button onclick="cancelAuctionListing(\''+r.id+'\')">Зняти з продажу</button>':'<button class="primary" onclick="buyAuctionListing(\''+r.id+'\')">Купити</button>')+'</article>';
+ }).join('');
+}
+function openCreateListing(invIndex){
+ if(!sbUser){alert('Спочатку увійди в акаунт через Налаштування → Акаунт.');return}
+ const inv=JSON.parse(localStorage.getItem('inv')||'[]');
+ const options=inv.map((it,i)=>({it,i})).filter(x=>ITEM_INFO[x.it.name]);
+ if(!options.length){alert('У тебе поки немає предметів для продажу.');return}
+ const old=$('listingModal');if(old)old.remove();
+ const selected=Number.isInteger(invIndex)&&options.some(x=>x.i===invIndex)?invIndex:options[0].i;
+ const o=document.createElement('div');o.id='listingModal';o.className='overlay';
+ o.innerHTML='<div class="modal" style="width:min(94vw,440px)"><div class="eyebrow">Marketplace</div><h2>Виставити предмет</h2><label class="muted" style="display:block;text-align:left;font-size:13px;margin:10px 0 5px">Предмет з інвентаря</label><select id="listingItem" class="inp">'+options.map(x=>'<option value="'+x.i+'" '+(x.i===selected?'selected':'')+'>'+escapeHTML(x.it.name)+' · базова ціна '+(getItemPrice(x.it.name)||'—')+' 🪙</option>').join('')+'</select><label class="muted" style="display:block;text-align:left;font-size:13px;margin:10px 0 5px">Твоя ціна (1–1 000 000 монет)</label><input id="listingPrice" class="inp" type="number" min="1" max="1000000" step="1" placeholder="Наприклад, 1200"><p id="listingMsg" class="muted" style="min-height:32px;font-size:12px">Після виставлення предмет зникне з інвентаря до покупки або скасування оголошення.</p><div class="controls"><button class="primary" onclick="createAuctionListing()">Опублікувати</button><button onclick="document.getElementById(\'listingModal\').remove()">Скасувати</button></div></div>';
+ document.body.append(o);
+ const base=getItemPrice(inv[selected]?.name)||100; $('listingPrice').value=base;
+ $('listingItem').onchange=()=>{const it=inv[Number($('listingItem').value)];$('listingPrice').value=getItemPrice(it?.name)||100};
+}
+async function createAuctionListing(){
+ const idx=Number($('listingItem').value),price=Number($('listingPrice').value),inv=JSON.parse(localStorage.getItem('inv')||'[]'),it=inv[idx],msg=$('listingMsg');
+ if(!it||!Number.isInteger(price)||price<1||price>1000000){msg.textContent='Перевір предмет і ціну: від 1 до 1 000 000 монет.';return}
+ msg.textContent='Публікуємо оголошення…';
+ const {data,error}=await sb.rpc('portal_create_listing',{p_item_name:it.name,p_price:price});
+ if(error){msg.textContent='Не вдалося виставити: '+error.message+'. Перевір, чи виконаний SQL-файл аукціону.';return}
+ const removed=inv.slice();removed.splice(idx,1);localStorage.setItem('inv',JSON.stringify(removed));
+ if(sbUser){await loadProfile();lastSaved=snapshot()}
+ $('listingModal').remove();toast('Оголошення опубліковано!');renderInventory();refreshAuction();
+}
+async function buyAuctionListing(id){
+ if(!sbUser){alert('Увійди в акаунт, щоб купувати.');return}
+ if(!confirm('Купити цей предмет? Монети буде списано з балансу.'))return;
+ const {data,error}=await sb.rpc('portal_buy_listing',{p_listing_id:id});
+ if(error){alert('Покупка не вдалася: '+error.message);return}
+ await loadProfile();lastSaved=snapshot();toast('Предмет придбано!');refreshAuction();renderInventory();
+}
+async function cancelAuctionListing(id){
+ if(!confirm('Зняти оголошення та повернути предмет в інвентар?'))return;
+ const {error}=await sb.rpc('portal_cancel_listing',{p_listing_id:id});
+ if(error){alert('Не вдалося зняти оголошення: '+error.message);return}
+ await loadProfile();lastSaved=snapshot();toast('Предмет повернуто в інвентар');refreshAuction();renderInventory();
+}
+
+async function openTransferItem(idx){
+ closeItemMenu();
+ if(!sbUser){alert('Для передачі предметів потрібно увійти в акаунт.');return}
+ const inv=JSON.parse(localStorage.getItem('inv')||'[]'),it=inv[idx];if(!it)return;
+ const old=$('transferModal');if(old)old.remove();
+ const o=document.createElement('div');o.id='transferModal';o.className='overlay';
+ o.innerHTML='<div class="modal"><div class="eyebrow">Inventory</div><h2>Передати предмет</h2><p><b>'+escapeHTML(it.name)+'</b></p><input id="transferNick" class="inp" placeholder="Нікнейм отримувача"><p id="transferMsg" class="muted" style="min-height:32px;font-size:12px">Предмет буде передано іншому акаунту безповоротно.</p><div class="controls"><button class="primary" onclick="confirmTransferItem('+idx+')">Передати</button><button onclick="document.getElementById(\'transferModal\').remove()">Скасувати</button></div></div>';
+ document.body.append(o);
+}
+async function confirmTransferItem(idx){
+ const nick=$('transferNick').value.trim(),msg=$('transferMsg');
+ if(!nick){msg.textContent='Введи нікнейм отримувача.';return}
+ if(!confirm('Передати предмет користувачу '+nick+'? Повернути його самостійно буде неможливо.'))return;
+ msg.textContent='Передаємо…';
+ const {error}=await sb.rpc('portal_transfer_item',{p_recipient_username:nick,p_item_index:idx,p_expected_item_name:JSON.parse(localStorage.getItem('inv')||'[]')[idx]?.name});
+ if(error){msg.textContent='Не вдалося передати: '+error.message;return}
+ await loadProfile();lastSaved=snapshot();$('transferModal').remove();toast('Предмет передано!');renderInventory();
 }
 
 /* ===== спільний гаманець ===== */
@@ -239,33 +333,32 @@ function renderInventory(){
  for(const g in groups){
   const list=inv.map((it,idx)=>({it,idx})).filter(x=>ITEM_INFO[x.it.name]&&ITEM_INFO[x.it.name][1]===g);
   html+='<h3 style="margin-top:16px">'+groups[g]+' ('+list.length+')</h3>';
-  html+=list.length?'<div style="display:flex;flex-wrap:wrap;gap:10px">'+list.map(({it,idx})=>'<div oncontextmenu="openItemMenu(event,'+idx+');return false" style="cursor:context-menu;width:110px;height:100px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--panel2);border-bottom:4px solid '+RAR_COL[it.ri]+';border-radius:12px;font-size:12px;text-align:center;padding:4px"><img src="'+ITEM_INFO[it.name][0]+'" style="height:56px;max-width:100%;object-fit:contain">'+it.name+'<br><span style="color:#facc15;font-size:11px">'+(PRICES[it.name]||'')+' 🪙</span></div>').join('')+'</div>':'<p class="muted">Поки порожньо</p>';
+  html+=list.length?'<div style="display:flex;flex-wrap:wrap;gap:10px">'+list.map(({it,idx})=>'<div oncontextmenu="openItemMenu(event,'+idx+');return false" ontouchstart="startItemLongPress(event,'+idx+')" ontouchend="cancelItemLongPress()" ontouchmove="cancelItemLongPress()" style="cursor:context-menu;width:110px;height:100px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--panel2);border-bottom:4px solid '+RAR_COL[it.ri]+';border-radius:12px;font-size:12px;text-align:center;padding:4px"><img src="'+ITEM_INFO[it.name][0]+'" style="height:56px;max-width:100%;object-fit:contain">'+it.name+'<br><span style="color:#facc15;font-size:11px">'+(getItemPrice(it.name)??'')+' 🪙</span></div>').join('')+'</div>':'<p class="muted">Поки порожньо</p>';
  }
  $('invBody').innerHTML=html;
 }
+let itemLongPressTimer=null;
+function startItemLongPress(e,idx){cancelItemLongPress();const t=e.touches&&e.touches[0];if(!t)return;const x=t.clientX,y=t.clientY;itemLongPressTimer=setTimeout(()=>{itemLongPressTimer=null;openItemMenu({clientX:x,clientY:y},idx)},550)}
+function cancelItemLongPress(){if(itemLongPressTimer){clearTimeout(itemLongPressTimer);itemLongPressTimer=null}}
 function closeItemMenu(){const m=document.getElementById('itemMenu');if(m)m.remove()}
 function openItemMenu(e,idx){
  closeItemMenu();
  const inv=JSON.parse(localStorage.getItem('inv')||'[]');const it=inv[idx];if(!it)return;
- const quick=Math.round((PRICES[it.name]||0)*QUICK_SELL_RATE);
+ const quick=Math.round((getItemPrice(it.name)||0)*QUICK_SELL_RATE);
  const m=document.createElement('div');m.id='itemMenu';
  m.style.cssText='position:fixed;left:'+Math.min(e.clientX,window.innerWidth-210)+'px;top:'+Math.min(e.clientY,window.innerHeight-170)+'px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:6px;z-index:200;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:4px;min-width:200px';
  m.innerHTML='<div style="padding:6px 10px;font-weight:800">'+it.name+'</div>'+
   '<button onclick="viewItem('+idx+')">🔍 Оглянути</button>'+
   '<button onclick="quickSell('+idx+')">💰 Швидко продати ('+quick+' 🪙)</button>'+
-  '<button disabled>🏷️ На аукціон (скоро)</button>';
+  '<button onclick="openCreateListing('+idx+')">🏷️ Виставити на аукціон</button>'+
+  '<button onclick="openTransferItem('+idx+')">🎁 Передати іншому</button>'; 
  document.body.append(m);
  setTimeout(()=>document.addEventListener('click',closeItemMenu,{once:true}),0);
-}
-function viewItem(idx){
- closeItemMenu();
- const inv=JSON.parse(localStorage.getItem('inv')||'[]');const it=inv[idx];if(!it)return;
- alert(it.name+'\nРідкість: '+RAR_NAMES[it.ri]+'\nЦіна в маркеті: '+(PRICES[it.name]||'—')+' 🪙');
 }
 function quickSell(idx){
  closeItemMenu();
  const inv=JSON.parse(localStorage.getItem('inv')||'[]');const it=inv[idx];if(!it)return;
- const quick=Math.round((PRICES[it.name]||0)*QUICK_SELL_RATE);
+ const quick=Math.round((getItemPrice(it.name)||0)*QUICK_SELL_RATE);
  if(!confirm('Продати '+it.name+' за '+quick+' 🪙?'))return;
  inv.splice(idx,1);
  localStorage.setItem('inv',JSON.stringify(inv));
@@ -288,9 +381,12 @@ function showTutorial(){tutPage=0;renderTut()}
 function renderTut(){
  let o=document.getElementById('tutorial');
  if(!o){o=document.createElement('div');o.id='tutorial';o.className='overlay';document.body.append(o)}
- const [t,x]=TUT[tutPage];
- const themes=t.startsWith('Тема')?'<div class="settings-row" style="justify-content:center;margin:10px 0"><button onclick="setTheme(\'green\')">🟢 Emerald</button><button onclick="setTheme(\'blue\')">🟣 Blue</button><button onclick="setTheme(\'midnight\')">⚫ Midnight</button><button onclick="setTheme(\'red\')">🔴 Red</button></div>':'';
- o.innerHTML='<div class="modal"><div class="eyebrow">Туторіал '+(tutPage+1)+'/'+TUT.length+'</div><h2>'+t+'</h2><p style="color:var(--muted);line-height:1.6">'+x+'</p>'+themes+'<div class="controls"><button onclick="tutPrev()" '+(tutPage===0?'disabled':'')+'>← Назад</button>'+(tutPage<TUT.length-1?'<button class="primary" onclick="tutNext()">Далі →</button>':'<button class="primary" onclick="finishTut()">Почати</button>')+'</div><button style="margin-top:10px;background:none;border:none;color:var(--muted)" onclick="closeTut()">Пропустити</button></div>';
+ const TUT_EN=[['Welcome 👋','This is your student hub: games, cases, inventory and a market. Earn coins 🪙 by playing.'],['Games 🎮','Play Snake, 2048, Sudoku and Chess. Earn coins from Snake, 2048 and completed Sudoku puzzles.'],['Cases 🎁','Use coins to open cases with fictional items and avatar frames. Rarity ranges from Common to Mythic.'],['Inventory 🎒','Open an item menu to inspect it, quick-sell it, list it in the auction or transfer it to another user.'],['Market & auction 🛒','Buy items in the Market or list your own items for other players in the Auction.'],['Themes 🎨','Choose a theme you like. You can change it any time in Settings.'],['All set ✅','You can reopen this tutorial from Settings.']];
+ const TUT_ES=[['¡Bienvenido! 👋','Este es tu portal de estudiante: juegos, cajas, inventario y mercado. Consigue monedas 🪙 jugando.'],['Juegos 🎮','Juega a Snake, 2048, Sudoku y Ajedrez. Consigue monedas con Snake, 2048 y los sudokus completados.'],['Cajas 🎁','Usa monedas para abrir cajas con objetos ficticios y marcos de avatar. La rareza va de común a mítico.'],['Inventario 🎒','Abre el menú de un objeto para verlo, venderlo rápido, publicarlo en la subasta o transferirlo a otro usuario.'],['Mercado y subastas 🛒','Compra objetos en el Mercado o publica los tuyos en la Subasta para otros jugadores.'],['Temas 🎨','Elige el tema que más te guste. Puedes cambiarlo en Ajustes cuando quieras.'],['¡Listo! ✅','Puedes volver a abrir este tutorial desde Ajustes.']];
+ const [t,x]=(currentLanguage()==='en'?TUT_EN:currentLanguage()==='es'?TUT_ES:TUT)[tutPage];
+ const themes=tutPage===5?'<div class="settings-row" style="justify-content:center;margin:10px 0"><button onclick="setTheme(\'green\')">🟢 Emerald</button><button onclick="setTheme(\'blue\')">🟣 Blue</button><button onclick="setTheme(\'midnight\')">⚫ Midnight</button><button onclick="setTheme(\'red\')">🔴 Red</button></div>':'';
+ const L=currentLanguage(),back=L==='en'?'← Back':L==='es'?'← Atrás':'← Назад',next=L==='en'?'Next →':L==='es'?'Siguiente →':'Далі →',start=L==='en'?'Start':L==='es'?'Empezar':'Почати',skip=L==='en'?'Skip':L==='es'?'Saltar':'Пропустити',label=L==='en'?'Tutorial':L==='es'?'Tutorial':'Туторіал';
+ o.innerHTML='<div class="modal"><div class="eyebrow">'+label+' '+(tutPage+1)+'/'+TUT.length+'</div><h2>'+t+'</h2><p style="color:var(--muted);line-height:1.6">'+x+'</p>'+themes+'<div class="controls"><button onclick="tutPrev()" '+(tutPage===0?'disabled':'')+'>'+back+'</button>'+(tutPage<TUT.length-1?'<button class="primary" onclick="tutNext()">'+next+'</button>':'<button class="primary" onclick="finishTut()">'+start+'</button>')+'</div><button style="margin-top:10px;background:none;border:none;color:var(--muted)" onclick="closeTut()">'+skip+'</button></div>';
 }
 function tutNext(){tutPage++;renderTut()}
 function tutPrev(){tutPage--;renderTut()}
@@ -304,7 +400,7 @@ function viewItem(idx){
  const o=document.createElement('div');o.id='inspect';o.className='overlay';
  o.innerHTML='<div class="modal"><h2 style="margin:0 0 4px">'+it.name+'</h2><div style="color:'+RAR_COL[it.ri]+';font-weight:800">'+RAR_NAMES[it.ri]+'</div>'+
   '<div id="stage" style="perspective:700px;height:250px;display:grid;place-items:center;margin:10px 0;touch-action:none;cursor:grab"><img id="spinImg" src="'+ITEM_INFO[it.name][0]+'" draggable="false" style="width:200px;height:200px;object-fit:contain;transition:transform .15s;filter:drop-shadow(0 14px 20px #000a);user-select:none"></div>'+
-  '<p class="muted" style="font-size:12px">Крути мишкою або пальцем. Ціна в маркеті: '+(PRICES[it.name]||'—')+' 🪙</p><button onclick="document.getElementById(\'inspect\').remove()">Закрити</button></div>';
+  '<p class="muted" style="font-size:12px">Крути мишкою або пальцем. Ціна в маркеті: '+(getItemPrice(it.name)??'—')+' 🪙</p><button onclick="document.getElementById(\'inspect\').remove()">Закрити</button></div>';
  document.body.append(o);
  const stage=o.querySelector('#stage'),img=o.querySelector('#spinImg');
  let rx=0,ry=0,drag=null;
@@ -320,8 +416,7 @@ function viewItem(idx){
  apply();
 }
 
-/* старт: туторіал при першому відкритті */
-if(localStorage.getItem('tutorialDone')!=='1')showTutorial();
+/* Перший запуск керується startOnboarding(): мова → акаунт → туторіал. */
 
 /* ===== вибір гри після туторіалу ===== */
 function finishTut(){closeTut();showGamePicker()}
@@ -340,43 +435,55 @@ function closePicker(){const o=document.getElementById('picker');if(o)o.remove()
 /* ===== Supabase: акаунти і хмарне збереження ===== */
 const SB_URL='https://yesvvxlarpmlylnskcdk.supabase.co';
 const SB_KEY='sb_publishable_EaDh9iuGQ_1_-1bay0PPpA_U4tF13vC';
-const sb=supabase.createClient(SB_URL,SB_KEY);
-let sbUser=null, lastSaved='', authMode='login';
+const sb=window.supabase?.createClient?window.supabase.createClient(SB_URL,SB_KEY):null;
+let sbUser=null, lastSaved='', authMode='login', profileEconomyVersion=0;
 
 function snapshot(){return JSON.stringify({c:getCoins(),d:getDiamonds(),i:JSON.parse(localStorage.getItem('inv')||'[]')})}
 
 async function ensureProfile(){
-  const name=(sbUser.user_metadata&&sbUser.user_metadata.username)||sbUser.email.split('@')[0];
-  await sb.from('profiles').upsert({id:sbUser.id,username:name},{onConflict:'id',ignoreDuplicates:true});
+  if(!sb||!sbUser)return {error:new Error('Supabase SDK не завантажився')};
+  const name=(sbUser.user_metadata&&sbUser.user_metadata.username)||(sbUser.email||'').split('@')[0]||'Student';
+  return await sb.from('profiles').upsert({id:sbUser.id,username:name},{onConflict:'id',ignoreDuplicates:true});
 }
 async function loadProfile(){
+  if(!sb||!sbUser)return {error:new Error('Supabase недоступний')};
   const {data,error}=await sb.from('profiles').select('*').eq('id',sbUser.id).single();
-  if(error||!data)return;
+  if(error||!data)return {error:error||new Error('Профіль не знайдено')};
   localStorage.setItem('caseCoins',String(data.coins));
   localStorage.setItem('diamonds',String(data.diamonds));
   localStorage.setItem('inv',JSON.stringify(data.inventory||[]));
+  profileEconomyVersion=Number(data.economy_version||0);
   lastSaved=snapshot();
   refreshWallet();
   updateAccountUI();
+  return {data};
 }
+let cloudSaveInFlight=false;
 async function saveCloud(){
-  if(!sbUser)return;
+  if(!sb||!sbUser||cloudSaveInFlight)return;
   const snap=snapshot();
   if(snap===lastSaved)return;
-  const {error}=await sb.from('profiles').update({
-    coins:getCoins(),diamonds:getDiamonds(),inventory:JSON.parse(localStorage.getItem('inv')||'[]')
-  }).eq('id',sbUser.id);
-  if(!error)lastSaved=snap;
+  cloudSaveInFlight=true;
+  try{
+    const userId=sbUser.id, expectedVersion=profileEconomyVersion;
+    const {data,error}=await sb.from('profiles').update({
+      coins:getCoins(),diamonds:getDiamonds(),inventory:JSON.parse(localStorage.getItem('inv')||'[]'),economy_version:expectedVersion+1
+    }).eq('id',userId).eq('economy_version',expectedVersion).select('economy_version').maybeSingle();
+    if(!error&&data&&sbUser&&sbUser.id===userId){profileEconomyVersion=Number(data.economy_version||expectedVersion+1);lastSaved=snap}
+    else if(!error&&!data&&sbUser&&sbUser.id===userId){await loadProfile()}
+  }catch(err){console.error('Cloud save failed:',err)}finally{cloudSaveInFlight=false}
 }
-setInterval(saveCloud,3000);
+const cloudSaveTimer=setInterval(saveCloud,5000);
 
 function updateAccountUI(){
   const el=document.getElementById('accountLabel');
   if(!el)return;
-  el.textContent=sbUser?('Увійшов: '+((sbUser.user_metadata&&sbUser.user_metadata.username)||sbUser.email)):'Гість (вхід не виконано)';
+  el.textContent=sbUser?('Увійшов: '+((sbUser.user_metadata&&sbUser.user_metadata.username)||sbUser.email)):(sb?'Гість (вхід не виконано)':'Гість · хмарний акаунт недоступний');
 }
 
+function escapeHTML(value){return String(value??'').replace(/[&<>\"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[ch]))}
 function closeAuth(){const o=document.getElementById('authModal');if(o)o.remove()}
+function continueAsGuest(){closeAuth();if(localStorage.getItem('tutorialDone')!=='1')showTutorial();}
 function setAuthMode(m){
   authMode=m;
   $('regFields').classList.toggle('hidden',m!=='reg');
@@ -390,26 +497,27 @@ function openAuth(){
   closeAuth();
   const o=document.createElement('div');o.id='authModal';o.className='overlay';
   if(sbUser){
-    o.innerHTML='<div class="modal"><div class="eyebrow">Акаунт</div><h2>'+((sbUser.user_metadata&&sbUser.user_metadata.username)||sbUser.email)+'</h2><p class="muted" style="font-size:13px">Монети, діаманти й інвентар зберігаються в хмарі і доступні з будь-якого пристрою.</p><div class="controls"><button class="primary" onclick="closeAuth()">Ок</button><button onclick="logout()">Вийти</button></div></div>';
+    o.innerHTML='<div class="modal"><div class="eyebrow">Акаунт</div><h2>'+escapeHTML((sbUser.user_metadata&&sbUser.user_metadata.username)||sbUser.email)+'</h2><p class="muted" style="font-size:13px">Монети, діаманти й інвентар зберігаються в хмарі і доступні з будь-якого пристрою.</p><div class="controls"><button class="primary" onclick="closeAuth()">Ок</button><button onclick="logout()">Вийти</button></div></div>';
   } else {
-    o.innerHTML='<div class="modal"><p style="font-size:18px;margin:0 0 8px">👋 Привіт, Волтере!</p><div class="eyebrow">Акаунт</div><h2 id="authTitle">Вхід</h2>'+
+    o.innerHTML='<div class="modal"><p style="font-size:18px;margin:0 0 8px">👋 Вітаємо!</p><div class="eyebrow">Акаунт</div><h2 id="authTitle">Вхід</h2>'+
       '<div class="controls" style="margin:8px 0"><button id="tabLogin" class="primary" onclick="setAuthMode(\'login\')">Вхід</button><button id="tabReg" onclick="setAuthMode(\'reg\')">Реєстрація</button></div>'+
       '<div id="regFields" class="hidden" style="margin-bottom:8px"><input id="authUser" class="inp" placeholder="Нікнейм"></div>'+
       '<div style="display:grid;gap:8px"><input id="authEmail" class="inp" type="email" placeholder="Пошта"><input id="authPass" class="inp" type="password" placeholder="Пароль (мін. 6 символів)"></div>'+
       '<p id="authMsg" class="muted" style="font-size:13px;min-height:36px;margin:8px 0"></p>'+
-      '<div class="controls"><button class="primary" id="authGo" onclick="doAuth()">Увійти</button><button onclick="closeAuth()">Закрити</button></div></div>';
+      '<div class="controls"><button class="primary" id="authGo" onclick="doAuth()">Увійти</button><button onclick="continueAsGuest()">Продовжити як гість</button></div></div>';
   }
   document.body.append(o);
   if(!sbUser)setAuthMode(authMode);
 }
 
 async function doAuth(){
+  if(!sb){$('authMsg').textContent='Сервіс акаунтів тимчасово недоступний. Перевір підключення Supabase.';return}
   const email=$('authEmail').value.trim(), pass=$('authPass').value, msg=$('authMsg');
   if(!email||pass.length<6){msg.textContent='Введи пошту і пароль (мін. 6 символів)';return}
   msg.textContent='Зачекай...';
   if(authMode==='reg'){
     const username=$('authUser').value.trim();
-    if(!username){msg.textContent='Введи нікнейм';return}
+    if(!/^[\p{L}\p{N}_-]{3,20}$/u.test(username)){msg.textContent='Нік має містити 3–20 літер, цифр, дефісів або підкреслень.';return}
     const {data,error}=await sb.auth.signUp({email,password:pass,options:{data:{username}}});
     if(error){msg.textContent='Помилка: '+error.message;return}
     if(!data.session){msg.textContent='Перевір пошту і натисни посилання з листа. Потім увійди.';return}
@@ -419,25 +527,22 @@ async function doAuth(){
     if(error){msg.textContent='Помилка: '+error.message;return}
     sbUser=data.user;
   }
-  await ensureProfile();
-  await loadProfile();
+  const ensured=await ensureProfile();
+  if(ensured?.error){msg.textContent='Акаунт створено, але профіль не налаштовано: '+ensured.error.message;return}
+  const loaded=await loadProfile();
+  if(loaded?.error){msg.textContent='Не вдалося завантажити профіль: '+loaded.error.message;return}
   closeAuth();
   toast('Вхід виконано 🎉');
+  if(localStorage.getItem('portalLanguageV2')&&localStorage.getItem('tutorialDone')!=='1')showTutorial();
 }
 
 async function logout(){
-  await sb.auth.signOut();
+  if(sb)await sb.auth.signOut();
   sbUser=null;lastSaved='';
   ['caseCoins','diamonds','inv'].forEach(k=>localStorage.removeItem(k));
   refreshWallet();updateAccountUI();closeAuth();
   toast('Ви вийшли');
 }
-
-(async()=>{
-  const {data:{session}}=await sb.auth.getSession();
-  if(session){sbUser=session.user;await ensureProfile();await loadProfile();}
-  updateAccountUI();
-})();
 
 /* ===== випадкові меми ===== */
 const MEMES=[
@@ -492,11 +597,414 @@ function renderAvatar(){
 }
 async function changeNick(){
   const n=$('nickInput').value.trim();if(!n)return;
-  if(!sbUser){alert('Спочатку увійди в акаунт');return}
+  if(!sbUser||!sb){alert('Спочатку увійди в акаунт');return}
+  if(!/^[\p{L}\p{N}_-]{3,20}$/u.test(n)){alert('Нік має містити 3–20 літер, цифр, дефісів або підкреслень.');return}
   const {error}=await sb.from('profiles').update({username:n}).eq('id',sbUser.id);
-  if(error){alert('Такий нік вже зайнятий або сталася помилка');return}
+  if(error){alert('Не вдалося змінити нік. Перевір унікальність і політики Supabase.');return}
+  const meta=await sb.auth.updateUser({data:{username:n}});
   sbUser.user_metadata={...(sbUser.user_metadata||{}),username:n};
-  updateAccountUI();$('nickInput').value='';toast('Нік змінено');
+  updateAccountUI();$('nickInput').value='';
+  if(meta.error)alert('Нік змінено в профілі, але не вдалося оновити метадані акаунта.');else toast('Нік змінено');
 }
 renderAvatar();
+
+/* ===== Мови та перший запуск ===== */
+const LANG_TEXT={
+ 'Головна':{en:'Home',es:'Inicio'},'🛒 Маркет':{en:'🛒 Market',es:'🛒 Mercado'},'🔨 Аукціон':{en:'🔨 Auction',es:'🔨 Subastas'},'🖼️ Рамки':{en:'🖼️ Frames',es:'🖼️ Marcos'},'🎒 Інвентар':{en:'🎒 Inventory',es:'🎒 Inventario'},'⚙ Налаштування':{en:'⚙ Settings',es:'⚙ Ajustes'},
+ 'Твій простір · твій вибір':{en:'Your space · your choice',es:'Tu espacio · tu elección'},'Перерва стала':{en:'Break time just got',es:'El descanso se volvió'},'цікавішою.':{en:'more interesting.',es:'más interesante.'},'Ігри, корисні посилання та маленькі інструменти — в одному місці. Обирай гру й залишайся на цій сторінці.':{en:'Games, useful links and small tools — all in one place. Choose a game and stay on this page.',es:'Juegos, enlaces útiles y pequeñas herramientas en un solo lugar. Elige un juego y quédate en esta página.'},'Пограти зараз ↗':{en:'Play now ↗',es:'Jugar ahora ↗'},'Ігри':{en:'Games',es:'Juegos'},'Судоку':{en:'Sudoku',es:'Sudoku'},'Змійка':{en:'Snake',es:'Serpiente'},'Шахи':{en:'Chess',es:'Ajedrez'},'Кейси':{en:'Cases',es:'Cajas'},'Кейс рамок':{en:'Frame case',es:'Caja de marcos'},'Грати':{en:'Play',es:'Jugar'},'Навчання та інструменти':{en:'Study & tools',es:'Estudio y herramientas'},'Спільнота':{en:'Community',es:'Comunidad'},'Спільний чат, профілі за нікнеймами та таблиця рекордів — наступний етап. Для них потрібен сервер, щоб повідомлення й результати синхронізувалися між усіма учнями.':{en:'Shared chat, nickname profiles and leaderboards are planned next. They need a server to sync messages and scores for everyone.',es:'El chat compartido, los perfiles con apodos y las clasificaciones llegarán después. Necesitan un servidor para sincronizar mensajes y resultados.'},
+ 'Маркет':{en:'Market',es:'Mercado'},'Аукціон':{en:'Auction',es:'Subastas'},'Рамки для аватарки':{en:'Avatar frames',es:'Marcos de avatar'},'Інвентар':{en:'Inventory',es:'Inventario'},'Налаштування':{en:'Settings',es:'Ajustes'},'Акаунт':{en:'Account',es:'Cuenta'},'Змінити нік':{en:'Change nickname',es:'Cambiar apodo'},'Зберегти':{en:'Save',es:'Guardar'},'Фото для аватарки':{en:'Avatar photo',es:'Foto de avatar'},'Рамка з інвентаря':{en:'Frame from inventory',es:'Marco del inventario'},'Мова / Language / Idioma':{en:'Language',es:'Idioma'},'Тема':{en:'Theme',es:'Tema'},'Туторіал':{en:'Tutorial',es:'Tutorial'},'Побажання':{en:'Suggestions',es:'Sugerencias'},'Напиши, що додати':{en:'Tell us what to add',es:'Dinos qué añadir'},'← Назад':{en:'← Back',es:'← Volver'},'＋ Виставити предмет':{en:'＋ List an item',es:'＋ Publicar objeto'},'↻ Оновити':{en:'↻ Refresh',es:'↻ Actualizar'},'Усі':{en:'All',es:'Todos'},'Скіни':{en:'Skins',es:'Aspectos'},'Рукавиці':{en:'Gloves',es:'Guantes'},'Мої оголошення':{en:'My listings',es:'Mis anuncios'},'Виставити предмет':{en:'List an item',es:'Publicar objeto'},'Купити':{en:'Buy',es:'Comprar'},'Зняти з продажу':{en:'Withdraw listing',es:'Retirar anuncio'},'Вхід':{en:'Sign in',es:'Iniciar sesión'},'Реєстрація':{en:'Sign up',es:'Registrarse'},'Нікнейм':{en:'Nickname',es:'Apodo'},'Пошта':{en:'Email',es:'Correo electrónico'},'Закрити':{en:'Close',es:'Cerrar'},'Продовжити як гість':{en:'Continue as guest',es:'Continuar como invitado'},'З чого почнемо?':{en:'Where shall we start?',es:'¿Por dónde empezamos?'},'Обери гру':{en:'Choose a game',es:'Elige un juego'},'Пізніше':{en:'Later',es:'Más tarde'},'🎁 Передати іншому':{en:'🎁 Transfer to another user',es:'🎁 Transferir a otro usuario'},'Передати предмет':{en:'Transfer item',es:'Transferir objeto'},'Передати':{en:'Transfer',es:'Transferir'},'Поки немає оголошень. Стань першим продавцем!':{en:'No listings yet. Be the first seller!',es:'Aún no hay anuncios. ¡Sé el primero en vender!'},'У тебе поки немає активних оголошень.':{en:'You have no active listings yet.',es:'Todavía no tienes anuncios activos.'},
+ 'Класична числова головоломка.':{en:'A classic number puzzle.',es:'Un rompecabezas clásico de números.'},'Збирай їжу, не врізайся в себе.':{en:'Collect food and avoid hitting yourself.',es:'Recoge comida y evita chocar contigo mismo.'},'Локальна партія на одному пристрої.':{en:'A local match on one device.',es:'Una partida local en un solo dispositivo.'},'Об\'єднуй плитки й дійди до 2048.':{en:'Merge tiles and reach 2048.',es:'Combina fichas y llega a 2048.'},'Відкривай кейси з вигаданими предметами.':{en:'Open cases with fictional items.',es:'Abre cajas con objetos ficticios.'},'Відкривай кейс з рамками для аватарки.':{en:'Open a case with avatar frames.',es:'Abre una caja con marcos para tu avatar.'},'4 режими · прямо в браузері':{en:'6 modes · right in your browser',es:'6 modos · directamente en el navegador'},'Не забудь зайти в Google Classroom сьогодні, там є завдання!':{en:'Remember to check Google Classroom today — there may be assignments!',es:'¡Recuerda revisar Google Classroom hoy, puede que haya tareas!'},'Ок, зайшов':{en:'Got it',es:'Vale'},'Завдання та курси':{en:'Assignments and courses',es:'Tareas y cursos'},'Файли та документи':{en:'Files and documents',es:'Archivos y documentos'},'Презентації':{en:'Presentations',es:'Presentaciones'},'Документи':{en:'Documents',es:'Documentos'},'Швидкі обчислення':{en:'Quick calculations',es:'Cálculos rápidos'},'Без рамки':{en:'No frame',es:'Sin marco'},'Поки порожньо':{en:'Nothing here yet',es:'Todavía está vacío'},'Рахунок: ': {en:'Score: ',es:'Puntuación: '},'Старт / пауза':{en:'Start / pause',es:'Iniciar / pausa'},'Заново':{en:'Restart',es:'Reiniciar'},'Нова гра':{en:'New game',es:'Nueva partida'},'Перевірити':{en:'Check',es:'Comprobar'},'Підказка':{en:'Hint',es:'Pista'},'Відкрити кейс':{en:'Open case',es:'Abrir caja'},'Продати все':{en:'Sell all',es:'Vender todo'},'Інвентар порожній':{en:'Inventory is empty',es:'El inventario está vacío'},'Мова змінена':{en:'Language changed',es:'Idioma cambiado'},'Скасувати':{en:'Cancel',es:'Cancelar'},'Опублікувати':{en:'Publish',es:'Publicar'},'Предмет з інвентаря':{en:'Item from inventory',es:'Objeto del inventario'},'Твоя ціна (1–1 000 000 монет)':{en:'Your price (1–1,000,000 coins)',es:'Tu precio (1–1.000.000 monedas)'},'Після виставлення предмет зникне з інвентаря до покупки або скасування оголошення.':{en:'After listing, the item leaves your inventory until it is bought or you cancel the listing.',es:'Al publicarlo, el objeto saldrá de tu inventario hasta que se compre o canceles el anuncio.'},'Продавець: ': {en:'Seller: ',es:'Vendedor: '},
+ 'Рахунок:':{en:'Score:',es:'Puntuación:'},'Керування: WASD або стрілки. На телефоні можна свайпати по полю.':{en:'Controls: WASD or arrow keys. Swipe on mobile.',es:'Controles: WASD o flechas. Desliza en el móvil.'},'Керування: стрілки або WASD. На телефоні — свайпи.':{en:'Controls: arrow keys or WASD. Swipe on mobile.',es:'Controles: flechas o WASD. Desliza en el móvil.'},'Гра завершена! Рахунок: ': {en:'Game over! Score: ',es:'¡Fin del juego! Puntuación: '},'Ходи закінчилися. Рахунок: ': {en:'No more moves. Score: ',es:'No quedan movimientos. Puntuación: '},'Поки є помилки — перевір цифри.':{en:'There are still mistakes — check the numbers.',es:'Aún hay errores: revisa los números.'},'Хід білих':{en:'White to move',es:'Turno de blancas'},'Хід чорних':{en:'Black to move',es:'Turno de negras'},'Звичайний':{en:'Common',es:'Común'},'Рідкісний':{en:'Rare',es:'Raro'},'Епічний':{en:'Epic',es:'Épico'},'Легендарний':{en:'Legendary',es:'Legendario'},'Міфічний':{en:'Mythic',es:'Mítico'},'Монети:':{en:'Coins:',es:'Monedas:'},'Порожньо':{en:'Empty',es:'Vacío'},'🔫 Зброя':{en:'🔫 Skins',es:'🔫 Aspectos'},'🧤 Рукавиці':{en:'🧤 Gloves',es:'🧤 Guantes'},'🖼️ Рамки':{en:'🖼️ Frames',es:'🖼️ Marcos'},'✨ Аксесуари':{en:'✨ Accessories',es:'✨ Accesorios'},'Сервіс акаунтів тимчасово недоступний. Перевір підключення Supabase.':{en:'Account service is temporarily unavailable. Check the Supabase connection.',es:'El servicio de cuentas no está disponible. Comprueba la conexión con Supabase.'},'Завантаження оголошень…':{en:'Loading listings…',es:'Cargando anuncios…'},'Поки немає оголошень. Стань першим продавцем!':{en:'No listings yet. Be the first seller!',es:'Aún no hay anuncios. ¡Sé el primero en vender!'},'У тебе поки немає активних оголошень.':{en:'You have no active listings yet.',es:'Todavía no tienes anuncios activos.'},'Введи нікнейм отримувача.':{en:'Enter the recipient nickname.',es:'Introduce el apodo del destinatario.'},'Передати предмет':{en:'Transfer item',es:'Transferir objeto'},'Передаємо…':{en:'Transferring…',es:'Transfiriendo…'},'Скасувати':{en:'Cancel',es:'Cancelar'},'Опублікувати':{en:'Publish',es:'Publicar'}
+};
+const originalTextNodes=new WeakMap();
+function currentLanguage(){return localStorage.getItem('portalLanguageV2')||'en'}
+function applyLanguage(root=document.body){const lang=currentLanguage();document.documentElement.lang=lang;const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);let n;while(n=walker.nextNode()){if(!originalTextNodes.has(n))originalTextNodes.set(n,n.nodeValue);const original=originalTextNodes.get(n);const key=original.trim();if(LANG_TEXT[key]){const leading=original.match(/^\s*/)?.[0]||'',trailing=original.match(/\s*$/)?.[0]||'',next=leading+(lang==='uk'?key:((LANG_TEXT[key]||{})[lang]||key))+trailing;if(n.nodeValue!==next)n.nodeValue=next}else if(n.nodeValue!==original)n.nodeValue=original}}
+function translatePlaceholders(){const l=currentLanguage(),map={authUser:{uk:'Нікнейм',en:'Nickname',es:'Apodo'},authEmail:{uk:'Пошта',en:'Email',es:'Correo electrónico'},authPass:{uk:'Пароль (мін. 6 символів)',en:'Password (min. 6 characters)',es:'Contraseña (mín. 6 caracteres)'},nickInput:{uk:'Новий нік',en:'New nickname',es:'Nuevo apodo'},wall:{uk:'URL картинки фону',en:'Wallpaper image URL',es:'URL de imagen de fondo'},transferNick:{uk:'Нікнейм отримувача',en:'Recipient nickname',es:'Apodo del destinatario'}};Object.entries(map).forEach(([id,v])=>{const el=$(id);if(el)el.placeholder=v[l]})}
+function setLanguage(lang){if(!['uk','es','en'].includes(lang))return;localStorage.setItem('portalLanguageV2',lang);applyLanguage();translatePlaceholders();const sel=$('languageSelect');if(sel)sel.value=lang;toast(lang==='uk'?'Мову змінено':lang==='es'?'Idioma cambiado':'Language changed')}
+const languageObserver=new MutationObserver(records=>{for(const r of records){if(r.type==='childList'){r.addedNodes.forEach(n=>{if(n.nodeType===1){applyLanguage(n);translatePlaceholders()}else if(n.nodeType===3)applyLanguage(n.parentElement||document.body)})}else if(r.type==='characterData')applyLanguage(r.target.parentElement||document.body)}});
+languageObserver.observe(document.body,{subtree:true,childList:true,characterData:true});
+
+(async()=>{
+  if(sb){try{const {data:{session}}=await sb.auth.getSession();if(session){sbUser=session.user;const ensured=await ensureProfile();if(!ensured?.error)await loadProfile();}}catch(err){console.error('Auth init failed:',err)}}
+  updateAccountUI();
+  startOnboarding();
+})();
+function showLanguagePicker(){const old=$('languageModal');if(old)old.remove();const o=document.createElement('div');o.id='languageModal';o.className='overlay';o.innerHTML='<div class="modal"><div class="eyebrow">PORTAL INSTI</div><h2>Choose your language</h2><p class="muted" style="font-size:13px">English is the default. You can change it later in Settings.</p><div class="controls" style="display:grid;grid-template-columns:1fr;gap:8px"></div></div>';const box=o.querySelector('.controls');[['en','🇬🇧 English',true],['uk','🇺🇦 Українська',false],['es','🇪🇸 Español',false]].forEach(([k,label,primary])=>{const b=document.createElement('button');if(primary)b.className='primary';b.textContent=label;b.onclick=()=>selectFirstLanguage(k);box.append(b)});document.body.append(o)}
+function selectFirstLanguage(lang){localStorage.setItem('portalLanguageV2',lang);applyLanguage();const o=$('languageModal');if(o)o.remove();if(!sbUser)openAuth();else if(localStorage.getItem('tutorialDone')!=='1')showTutorial()}
+function startOnboarding(){const lang=localStorage.getItem('portalLanguageV2');if(!lang){applyLanguage();showLanguagePicker();return}applyLanguage();translatePlaceholders();if(!sbUser){openAuth();return}if(localStorage.getItem('tutorialDone')!=='1')showTutorial()}
+
+
+function rgMount(container){
+const LST=[];let alive=true;
+function on(t,f){window.addEventListener(t,f);LST.push([t,f]);}
+
+const cv=document.createElement('canvas');cv.width=960;cv.height=540;cv.style.cssText='display:block;margin:0 auto;max-width:100%;height:auto;border:2px solid #334;background:#000;touch-action:none';container.innerHTML='';container.appendChild(cv);const g=cv.getContext('2d');
+g.imageSmoothingEnabled=false;
+const W=960,H=540,GY=470,GRAV=0.7;
+
+// ---------- мови ----------
+const LANG={
+  uk:{play:'Грати',controls:'Керування',back:'← Назад',resume:'Продовжити',toMenu:'У меню',
+      room:'Кімната',hp:'HP',score:'Рахунок',kills:'Вбито',cleared:'Кімнату зачищено! Обери покращення',
+      pickHint:'клавіші 1–3 або клік',paused:'ПАУЗА',pauseHint:'Esc — продовжити',
+      dead:'Ти загинув',deadSub:'Натисни R або кнопку нижче',again:'Грати знову',
+      ctrlTitle:'Керування',
+      ctrl:['← → — рух','Пробіл / W — стрибок (двічі в повітрі після апгрейду)','Клік мишкою або J — удар у бік курсора','Shift — перекат (невразливість під час перекату)','Esc або P — пауза'],
+      title:'PORTAL INSTI · Roguelike',
+      upg:['+15 макс. HP','+5 шкоди','+0.5 швидкість','Відновити 40 HP','Потрійний стрибок','Перекат частіше (−0.2с)'],
+      picked:'Обрано',bonus:'Бонус: 5 кімнат +200 🪙'},
+  es:{play:'Jugar',controls:'Controles',back:'← Atrás',resume:'Continuar',toMenu:'Menú',
+      room:'Sala',hp:'HP',score:'Puntos',kills:'Derrotados',cleared:'¡Sala superada! Elige una mejora',
+      pickHint:'teclas 1–3 o clic',paused:'PAUSA',pauseHint:'Esc — continuar',
+      dead:'Has caído',deadSub:'Pulsa R o el botón de abajo',again:'Jugar de nuevo',
+      ctrlTitle:'Controles',
+      ctrl:['← → — moverse','Espacio / W — saltar (doble en el aire tras la mejora)','Clic o J — golpear hacia el cursor','Shift — voltereta (invulnerable durante la voltereta)','Esc o P — pausa'],
+      title:'PORTAL INSTI · Roguelike',
+      upg:['+15 HP máx.','+5 daño','+0.5 velocidad','Recuperar 40 HP','Triple salto','Voltereta más rápida (−0.2s)'],
+      picked:'Elegido',bonus:'Bono: 5 salas +200 🪙'},
+  en:{play:'Play',controls:'Controls',back:'← Back',resume:'Resume',toMenu:'Menu',
+      room:'Room',hp:'HP',score:'Score',kills:'Kills',cleared:'Room cleared! Pick an upgrade',
+      pickHint:'keys 1–3 or click',paused:'PAUSED',pauseHint:'Esc — resume',
+      dead:'You died',deadSub:'Press R or the button below',again:'Play again',
+      ctrlTitle:'Controls',
+      ctrl:['← → — move','Space / W — jump (double in air after upgrade)','Click or J — attack toward cursor','Shift — roll (invulnerable while rolling)','Esc or P — pause'],
+      title:'PORTAL INSTI · Roguelike',
+      upg:['+15 max HP','+5 damage','+0.5 speed','Restore 40 HP','Triple jump','Roll more often (−0.2s)'],
+      picked:'Picked',bonus:'Bonus: 5 rooms cleared +200 🪙'}
+};
+const curLang=()=>localStorage.getItem('portalLanguageV2')||'en';
+const T=()=>LANG[curLang()]||LANG.en;
+
+// ---------- картинки ----------
+const IMG={};
+['bg','hero','slime','eye','skel','orc','chest'].forEach(n=>{
+  const i=new Image(); i.src='rg/assets/'+n+'.png'; IMG[n]=i;
+});
+
+// ---------- клавіатура/миша ----------
+const down={},pressed={};
+let mouseX=null, buttons=[];
+on('keydown',e=>{
+  if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Space'].includes(e.code)) e.preventDefault();
+  if(e.repeat) return;
+  down[e.code]=true; pressed[e.code]=true;
+});
+on('keyup',e=>{down[e.code]=false});
+const isD=(...c)=>c.some(k=>down[k]);
+const isP=(...c)=>c.some(k=>pressed[k]);
+
+cv.addEventListener('mousemove',ev=>{
+  const r=cv.getBoundingClientRect(); mouseX=(ev.clientX-r.left)*W/r.width;
+});
+cv.addEventListener('mouseleave',()=>{mouseX=null});
+cv.addEventListener('contextmenu',ev=>ev.preventDefault());
+cv.addEventListener('mousedown',ev=>{
+  if(ev.button!==0) return;
+  if(state==='play') pressed['Mouse']=true;
+});
+cv.addEventListener('click',ev=>{
+  const r=cv.getBoundingClientRect();
+  const x=(ev.clientX-r.left)*W/r.width, y=(ev.clientY-r.top)*H/r.height;
+  for(const b of buttons){
+    if(x>b.x&&x<b.x+b.w&&y>b.y&&y<b.y+b.h){ b.act(); return; }
+  }
+});
+
+// ---------- вороги та апгрейди ----------
+const TYPES={
+  slime:{kind:'walk',hp:30,spd:1.0,dmg:10,w:44,h:26,sh:34},
+  eye:  {kind:'fly', hp:20,spd:1.6,dmg:8, w:44,h:40,sh:46},
+  skel: {kind:'walk',hp:42,spd:1.6,dmg:14,w:34,h:70,sh:84},
+  orc:  {kind:'charge',hp:70,spd:2.2,dmg:18,w:52,h:72,sh:84},
+  chest:{kind:'mimic',hp:55,spd:0,dmg:22,w:46,h:44,sh:52}
+};
+const UPG=[
+  {id:0,f:()=>{P.maxHp+=15;P.hp+=15}},
+  {id:1,f:()=>{P.dmg+=5}},
+  {id:2,f:()=>{P.spd+=0.5}},
+  {id:3,f:()=>{P.hp=Math.min(P.maxHp,P.hp+40)}},
+  {id:4,f:()=>{P.jumpsMax=2}, need:()=>P.jumpsMax<2},
+  {id:5,f:()=>{P.rollCdMax=Math.max(0.5,P.rollCdMax-0.2)}}
+];
+
+let P,enemies,room,score,kills,picked,state='menu',options,parts;
+
+function newRun(){
+  P={x:120,y:GY,w:34,h:70,vx:0,vy:0,face:1,onG:true,jumps:0,jumpsMax:1,
+     hp:100,maxHp:100,inv:0,atk:0,atkCd:0,roll:0,rollCd:0,rollCdMax:1.2,
+     dmg:18,spd:4.2,hitSet:new Set()};
+  room=1;score=0;kills=0;picked=[];parts=[];
+  startRoom();
+}
+function spawn(){
+  const pool=['slime','eye'];
+  if(room>=2) pool.push('skel');
+  if(room>=3) pool.push('orc');
+  if(room>=4) pool.push('chest');
+  const t=pool[Math.floor(Math.random()*pool.length)];
+  const d=TYPES[t], k=1+0.12*(room-1);
+  const side=Math.random()<0.5?0:1;
+  return {t,kind:d.kind,spd:d.spd,dmg:Math.round(d.dmg*k),w:d.w,h:d.h,sh:d.sh,
+          hp:Math.round(d.hp*k),maxHp:Math.round(d.hp*k),
+          x:side?W-90-Math.random()*120:90+Math.random()*120,
+          y:t==='eye'?GY-140:GY,vy:0,face:-1,cd:0,flash:0,t0:Math.random()*6,dashT:0,dead:false};
+}
+function startRoom(){
+  enemies=[];
+  const n=Math.min(2+room,7);
+  for(let i=0;i<n;i++) enemies.push(spawn());
+  P.x=120;P.y=GY;P.vx=0;P.vy=0;P.inv=60;
+  state='play';
+}
+function hurtPlayer(dmg,fromX){
+  if(P.inv>0||P.roll>0) return;
+  P.hp-=dmg; P.inv=50;
+  P.vx=(P.x<fromX?-1:1)*5; P.vy=-5; P.onG=false;
+  if(P.hp<=0){P.hp=0;state='dead';}
+}
+
+// ---------- гравець ----------
+function updatePlayer(){
+  let dir=0;
+  if(isD('ArrowLeft','KeyA')) dir=-1;
+  if(isD('ArrowRight','KeyD')) dir=1;
+  if(P.roll>0){ P.vx=P.face*11; P.roll--; }
+  else if(dir!==0){ P.vx=dir*P.spd; P.face=dir; }
+  else P.vx*=0.7;
+
+  if(isP('Space','KeyW','ArrowUp')){
+    if(P.onG){P.vy=-12;P.onG=false;P.jumps=0;}
+    else if(P.jumps<P.jumpsMax){P.vy=-11;P.jumps++;}
+  }
+  if(isP('ShiftLeft','ShiftRight') && P.rollCd<=0){
+    P.roll=16; P.rollCd=Math.round(P.rollCdMax*60); P.inv=Math.max(P.inv,16);
+  }
+  if(isP('KeyJ','KeyZ','Mouse') && P.atkCd<=0){
+    if(mouseX!==null) P.face = mouseX>P.x ? 1 : -1;
+    P.atk=14; P.atkCd=22; P.hitSet=new Set();
+  }
+
+  P.vy+=GRAV; P.y+=P.vy;
+  if(P.y>=GY){P.y=GY;P.vy=0;P.onG=true;P.jumps=0;}
+  P.x+=P.vx; P.x=Math.max(30,Math.min(W-30,P.x));
+
+  P.inv=Math.max(0,P.inv-1);
+  P.rollCd=Math.max(0,P.rollCd-1);
+  P.atkCd=Math.max(0,P.atkCd-1);
+  if(P.atk>0){
+    P.atk--;
+    const hb={x:P.face>0?P.x:P.x-64,y:P.y-P.h*0.9,w:64,h:P.h*0.8};
+    for(const e of enemies){
+      if(e.dead||P.hitSet.has(e)) continue;
+      if(overlap(hb,box(e))){
+        P.hitSet.add(e);
+        e.hp-=P.dmg; e.flash=8; e.x+=P.face*16;
+        parts.push({x:e.x,y:e.y-e.sh/2,t:14,c:'#ffd27a'});
+        if(e.hp<=0){ e.dead=true; kills++; score+=10; parts.push({x:e.x,y:e.y-e.sh,t:24,c:'#fff',txt:'+10'}); }
+      }
+    }
+  }
+}
+function box(e){return {x:e.x-e.w/2,y:e.y-e.h,w:e.w,h:e.h};}
+function pbox(){return {x:P.x-P.w/2,y:P.y-P.h,w:P.w,h:P.h};}
+function overlap(a,b){return a.x<b.x+b.w&&a.x+a.w>b.x&&a.y<b.y+b.h&&a.y+a.h>b.y;}
+
+function updateEnemy(e){
+  e.t0+=0.05; e.flash=Math.max(0,e.flash-1); e.cd=Math.max(0,e.cd-1);
+  const dx=P.x-e.x, dist=Math.abs(dx);
+  e.face=dx>0?1:-1;
+  if(e.kind==='fly'){
+    if(dist>50) e.x+=e.face*e.spd*0.9;
+    e.y=GY-140+Math.sin(e.t0*4)*22;
+  } else if(e.kind==='walk'){
+    if(dist>36) e.x+=e.face*e.spd;
+    e.vy+=GRAV; e.y+=e.vy; if(e.y>=GY){e.y=GY;e.vy=0;}
+  } else if(e.kind==='charge'){
+    if(e.dashT>0){ e.x+=e.face*9; e.dashT--; }
+    else { if(dist>40) e.x+=e.face*e.spd*0.5;
+           if(dist<330 && e.cd<=0){ e.dashT=28; e.cd=160; } }
+    e.vy+=GRAV; e.y+=e.vy; if(e.y>=GY){e.y=GY;e.vy=0;}
+  } else if(e.kind==='mimic'){
+    if(e.dashT>0){ e.x+=e.face*7; e.dashT--; }
+    else if(dist<190 && e.cd<=0){ e.dashT=18; e.cd=120; }
+  }
+  if(overlap(pbox(),box(e))) hurtPlayer(e.dmg,e.x);
+}
+
+// ---------- логіка кадру ----------
+function pickUpgrade(i){
+  const u=options[i]; if(!u) return;
+  u.f(); picked.push(T().upg[u.id]);
+  score+=50; if(room%5===0){addCoins(200);picked.push(T().bonus);} room++;
+  startRoom();
+}
+function goMenu(){ state='menu'; }
+function togglePause(){
+  if(state==='play') state='pause';
+  else if(state==='pause') state='play';
+}
+
+function update(){
+  if(isP('Escape','KeyP')) togglePause();
+  if(state==='play'){
+    updatePlayer();
+    enemies.forEach(updateEnemy);
+    enemies=enemies.filter(e=>!e.dead);
+    parts.forEach(p=>p.t--); parts=parts.filter(p=>p.t>0);
+    if(enemies.length===0){
+      state='reward';
+      const pool=UPG.filter(u=>!u.need||u.need());
+      options=[];
+      while(options.length<3 && pool.length) options.push(pool.splice(Math.floor(Math.random()*pool.length),1)[0]);
+    }
+  }
+  if(state==='reward'){
+    for(let i=0;i<options.length;i++) if(isP('Digit'+(i+1),'Numpad'+(i+1))) pickUpgrade(i);
+  }
+  if(state==='dead' && isP('KeyR')) newRun();
+  for(const k in pressed) pressed[k]=false;
+}
+
+// ---------- малювання ----------
+function btn(x,y,w,h,label,act,active){
+  g.fillStyle=active?'#3b5bdb':'#1d2238'; g.fillRect(x,y,w,h);
+  g.strokeStyle='#7aa8ff'; g.lineWidth=2; g.strokeRect(x,y,w,h);
+  g.fillStyle='#fff'; g.font='bold 18px Arial'; g.textAlign='center';
+  g.fillText(label,x+w/2,y+h/2+6); g.textAlign='left';
+  buttons.push({x,y,w,h,act});
+}
+function drawSprite(img,fx,fy,targetH,flip,flash,fallback,alpha){
+  if(img.complete && img.naturalWidth){
+    const sc=targetH/img.height, sw=img.width*sc;
+    g.save(); g.translate(fx,fy); if(flip) g.scale(-1,1);
+    g.globalAlpha=alpha!==undefined?alpha:(flash>0?0.55:1);
+    g.drawImage(img,-sw/2,-targetH,sw,targetH); g.restore();
+  } else { g.fillStyle=fallback; g.fillRect(fx-14,fy-targetH,28,targetH); }
+}
+function drawBg(){
+  if(IMG.bg.complete && IMG.bg.naturalWidth) g.drawImage(IMG.bg,0,0,W,H);
+  else { g.fillStyle='#14142a'; g.fillRect(0,0,W,H); }
+}
+function drawMenu(){
+  drawBg();
+  g.fillStyle='rgba(0,0,0,0.55)'; g.fillRect(0,0,W,H);
+  g.textAlign='center'; g.fillStyle='#fff'; g.font='bold 42px Arial';
+  g.fillText(T().title,W/2,150); g.textAlign='left';
+  buttons=[];
+  btn(W/2-110,220,220,52,T().play,()=>newRun());
+  btn(W/2-110,290,220,46,T().controls,()=>{state='controls';});
+  const L=[['uk','УКР'],['es','ESP'],['en','ENG']];
+  L.forEach(([k,label],i)=>btn(W/2-150+i*110,370,100,40,label,()=>{localStorage.setItem('portalLanguageV2',k);if(typeof applyLanguage==='function')applyLanguage();},curLang()===k));
+}
+function drawControls(){
+  drawBg(); g.fillStyle='rgba(0,0,0,0.7)'; g.fillRect(0,0,W,H);
+  buttons=[];
+  g.textAlign='center'; g.fillStyle='#fff'; g.font='bold 32px Arial'; g.fillText(T().ctrlTitle,W/2,150);
+  g.font='18px Arial'; g.fillStyle='#ccd';
+  T().ctrl.forEach((line,i)=>g.fillText(line,W/2,210+i*36));
+  g.textAlign='left';
+  btn(W/2-110,400,220,46,T().back,()=>{state='menu';});
+}
+function drawHUD(){
+  g.fillStyle='rgba(0,0,0,0.5)'; g.fillRect(12,12,260,62);
+  g.fillStyle='#000'; g.fillRect(22,24,240,16);
+  g.fillStyle='#4c4'; g.fillRect(22,24,240*(P.hp/P.maxHp),16);
+  g.fillStyle='#fff'; g.font='13px Arial';
+  g.fillText(`${T().hp} ${Math.ceil(P.hp)}/${P.maxHp}`,24,56);
+  g.fillText(`${T().room} ${room}`,130,56);
+  g.fillStyle='rgba(0,0,0,0.5)'; g.fillRect(W-200,12,188,44);
+  g.fillStyle='#fff'; g.font='bold 16px Arial'; g.fillText(`${T().score}: ${score}`,W-188,40);
+  if(picked.length){
+    g.fillStyle='rgba(0,0,0,0.5)'; g.fillRect(12,82,260,18+picked.length*16);
+    g.fillStyle='#cdd'; g.font='12px Arial';
+    picked.forEach((n,i)=>g.fillText('• '+n,20,100+i*16));
+  }
+}
+function wrapText(text,x,y,maxW,lh){
+  const words=text.split(' '); let line='', lines=[];
+  words.forEach(w=>{const t=line?line+' '+w:w; if(g.measureText(t).width>maxW){lines.push(line);line=w;} else line=t;});
+  lines.push(line);
+  const top=y-(lines.length-1)*lh/2;
+  lines.forEach((l,i)=>g.fillText(l,x,top+i*lh));
+}
+function drawReward(){
+  g.fillStyle='rgba(0,0,0,0.6)'; g.fillRect(0,0,W,H);
+  g.textAlign='center'; g.fillStyle='#fff'; g.font='bold 28px Arial';
+  g.fillText(T().cleared,W/2,140);
+  g.font='14px Arial'; g.fillStyle='#aab'; g.fillText(T().pickHint,W/2,168);
+  buttons=[];
+  options.forEach((u,i)=>{
+    const bx=W/2-300+i*200, by=200;
+    g.fillStyle='#1d2238'; g.fillRect(bx,by,180,120);
+    g.strokeStyle='#7aa8ff'; g.lineWidth=2; g.strokeRect(bx,by,180,120);
+    g.fillStyle='#fff'; g.font='bold 18px Arial';
+    wrapText(T().upg[u.id],bx+90,by+58,160,22);
+    g.fillStyle='#7aa8ff'; g.font='13px Arial'; g.fillText('['+(i+1)+']',bx+90,by+108);
+    buttons.push({x:bx,y:by,w:180,h:120,act:()=>pickUpgrade(i)});
+  });
+  g.textAlign='left';
+}
+function drawPlayScene(){
+  drawBg();
+  enemies.forEach(e=>{
+    drawSprite(IMG[e.t],e.x,e.y,e.sh,e.face<0,e.flash,'#8f8');
+    if(e.flash>0){ g.fillStyle='rgba(255,255,255,0.35)'; g.fillRect(e.x-e.w/2,e.y-e.h,e.w,e.h); }
+    g.fillStyle='#000'; g.fillRect(e.x-22,e.y-e.sh-10,44,5);
+    g.fillStyle='#e54'; g.fillRect(e.x-22,e.y-e.sh-10,44*Math.max(0,e.hp/e.maxHp),5);
+  });
+  const blink=P.inv>0 && P.roll===0 && Math.floor(P.inv/4)%2===0;
+  if(!blink){
+    const alpha=P.roll>0?0.6:1;
+    drawSprite(IMG.hero,P.x,P.y,P.h+6,P.face<0,0,'#4af',alpha);
+  }
+  if(P.atk>0){
+    g.strokeStyle='rgba(255,255,255,0.8)'; g.lineWidth=5;
+    const cx=P.face>0?P.x+40:P.x-40;
+    g.beginPath();
+    if(P.face>0) g.arc(cx,P.y-P.h*0.5,44,-1.0,1.0); else g.arc(cx,P.y-P.h*0.5,44,Math.PI-1.0,Math.PI+1.0);
+    g.stroke();
+  }
+  parts.forEach(p=>{
+    g.globalAlpha=Math.max(0,p.t/24);
+    if(p.txt){ g.fillStyle=p.c; g.font='bold 18px Arial'; g.fillText(p.txt,p.x,p.y-(24-p.t)); }
+    else { g.fillStyle=p.c; g.fillRect(p.x-4,p.y-(14-p.t)*0.5,8,8); }
+    g.globalAlpha=1;
+  });
+  drawHUD();
+}
+function drawPause(){
+  g.fillStyle='rgba(0,0,0,0.65)'; g.fillRect(0,0,W,H);
+  buttons=[];
+  g.textAlign='center'; g.fillStyle='#fff'; g.font='bold 40px Arial'; g.fillText(T().paused,W/2,H/2-60); g.textAlign='left';
+  btn(W/2-110,H/2-20,220,46,T().resume,()=>{state='play';});
+  btn(W/2-110,H/2+40,220,46,T().controls,()=>{state='controls';});
+  btn(W/2-110,H/2+100,220,46,T().toMenu,()=>{state='menu';});
+}
+function drawDead(){
+  g.fillStyle='rgba(0,0,0,0.65)'; g.fillRect(0,0,W,H);
+  buttons=[];
+  g.textAlign='center'; g.fillStyle='#fff'; g.font='bold 40px Arial'; g.fillText(T().dead,W/2,H/2-60);
+  g.font='18px Arial'; g.fillStyle='#ccd';
+  g.fillText(`${T().score}: ${score}  ·  ${T().room}: ${room}  ·  ${T().kills}: ${kills}`,W/2,H/2-16);
+  g.textAlign='left';
+  btn(W/2-110,H/2+10,220,46,T().again,()=>newRun());
+  btn(W/2-110,H/2+70,220,46,T().toMenu,()=>{state='menu';});
+}
+function draw(){
+  buttons=[];
+  if(state==='menu'){ drawMenu(); }
+  else if(state==='controls'){ drawControls(); }
+  else {
+    drawPlayScene();
+    if(state==='reward') drawReward();
+    if(state==='pause') drawPause();
+    if(state==='dead') drawDead();
+  }
+}
+function loop(){ if(!alive) return; update(); draw(); requestAnimationFrame(loop); }
+newRun(); state='menu';
+loop();
+container._cleanup=()=>{alive=false;LST.forEach(([t,f])=>window.removeEventListener(t,f));};
+
+}
 </script></body></html>
