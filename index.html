@@ -766,18 +766,55 @@ const LANG_TEXT={
 "Купити":{"en":"Buy","es":"Comprar"},
 "Грати":{"en":"Play","es":"Jugar"},
 "Передати":{"en":"Transfer","es":"Transferir"},
-"Відкрити кейс":{"en":"Open case","es":"Abrir caja"},
+
 "Вхід виконано":{"en":"Signed in","es":"Sesión iniciada"},
 "Ще":{"en":"More","es":"Más"},
 "Ігри":{"en":"Games","es":"Juegos"},
 "Інвентар":{"en":"Inventory","es":"Inventario"},
 "Маркет":{"en":"Market","es":"Mercado"},
 "Кейси":{"en":"Cases","es":"Cajas"},
-"Вітаємо":{"en":"Welcome","es":"Bienvenido"}
+"Вітаємо":{"en":"Welcome","es":"Bienvenido"},
+"Ок":{"en":"OK","es":"OK"},
+"Зброя":{"en":"Weapons","es":"Armas"},
+"Рукавиці":{"en":"Gloves","es":"Guantes"},
+"Аксесуари":{"en":"Accessories","es":"Accesorios"},
+"Поки порожньо":{"en":"Empty for now","es":"Todavía está vacío"},
+"Todavía":{"en":"Todavía","es":"Todavía"},
+"монет":{"en":"coins","es":"monedas"},
+"Продавець":{"en":"Seller","es":"Vendedor"},
+"Ціни в монетах":{"en":"Prices in coins","es":"Precios en monedas"}
 };
 const originalTextNodes=new WeakMap();
 function currentLanguage(){return localStorage.getItem('portalLanguageV2')||'en'}
-function applyLanguage(root=document.body){const lang=currentLanguage();document.documentElement.lang=lang;const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);let n;while(n=walker.nextNode()){if(!originalTextNodes.has(n))originalTextNodes.set(n,n.nodeValue);const original=originalTextNodes.get(n);const key=original.trim();if(LANG_TEXT[key]){const leading=original.match(/^\s*/)?.[0]||'',trailing=original.match(/\s*$/)?.[0]||'',next=leading+(lang==='uk'?key:((LANG_TEXT[key]||{})[lang]||key))+trailing;if(n.nodeValue!==next)n.nodeValue=next}else if(n.nodeValue!==original)n.nodeValue=original}}
+const lastTranslated=new WeakMap();
+function translateText(text,lang){
+  if(lang==='uk') return text;
+  const m=text.match(/^(\s*)([\s\S]*?)(\s*)$/);
+  const core=m[2];
+  if(!core) return text;
+  const direct=LANG_TEXT[core];
+  if(direct&&direct[lang]) return m[1]+direct[lang]+m[3];
+  const keys=Object.keys(LANG_TEXT).filter(k=>k.length>=3&&LANG_TEXT[k]&&LANG_TEXT[k][lang]).sort((x,y)=>y.length-x.length);
+  let out=core;
+  for(const k of keys){ if(out.indexOf(k)>=0) out=out.split(k).join(LANG_TEXT[k][lang]); }
+  return m[1]+out+m[3];
+}
+function applyLanguage(root=document.body){
+  const lang=currentLanguage();
+  document.documentElement.lang=lang;
+  const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:n=>{
+    const t=n.parentElement&&n.parentElement.tagName;
+    return (t==='SCRIPT'||t==='STYLE')?NodeFilter.FILTER_REJECT:NodeFilter.FILTER_ACCEPT;
+  }});
+  const nodes=[]; let n; while((n=walker.nextNode())) nodes.push(n);
+  nodes.forEach(node=>{
+    const cur=node.nodeValue;
+    if(!originalTextNodes.has(node) || lastTranslated.get(node)!==cur){ originalTextNodes.set(node,cur); }
+    const out=translateText(originalTextNodes.get(node),lang);
+    if(out!==cur) node.nodeValue=out;
+    lastTranslated.set(node,node.nodeValue);
+  });
+}
 function translatePlaceholders(){const l=currentLanguage(),map={authUser:{uk:'Нікнейм',en:'Nickname',es:'Apodo'},authEmail:{uk:'Пошта',en:'Email',es:'Correo electrónico'},authPass:{uk:'Пароль (мін. 6 символів)',en:'Password (min. 6 characters)',es:'Contraseña (mín. 6 caracteres)'},nickInput:{uk:'Новий нік',en:'New nickname',es:'Nuevo apodo'},wall:{uk:'URL картинки фону',en:'Wallpaper image URL',es:'URL de imagen de fondo'},transferNick:{uk:'Нікнейм отримувача',en:'Recipient nickname',es:'Apodo del destinatario'}};Object.entries(map).forEach(([id,v])=>{const el=$(id);if(el)el.placeholder=v[l]})}
 function setLanguage(lang){if(!['uk','es','en'].includes(lang))return;localStorage.setItem('portalLanguageV2',lang);applyLanguage();translatePlaceholders();const sel=$('languageSelect');if(sel)sel.value=lang;toast(lang==='uk'?'Мову змінено':lang==='es'?'Idioma cambiado':'Language changed')}
 const languageObserver=new MutationObserver(records=>{for(const r of records){if(r.type==='childList'){r.addedNodes.forEach(n=>{if(n.nodeType===1){applyLanguage(n);translatePlaceholders()}else if(n.nodeType===3)applyLanguage(n.parentElement||document.body)})}else if(r.type==='characterData')applyLanguage(r.target.parentElement||document.body)}});
@@ -1166,4 +1203,6 @@ loop();
 container._cleanup=()=>{alive=false;LST.forEach(([t,f])=>window.removeEventListener(t,f));};
 
 }
+
+setInterval(()=>{try{applyLanguage();}catch(e){}},900);
 </script></body></html>
